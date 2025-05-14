@@ -1,0 +1,26 @@
+# Node
+node_modules
+npm-debug.log
+
+# TypeScript
+*.map
+*.d.ts
+
+# Editors
+.history
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Mac
+.DS_Store
+**/.DS_Store
+
+# App
+dist
+public
+
+# Test
+.coverage
+test/results/

@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Typescript
+- Use TypeScript for all code.
+- Keep Typescript simple and easy to read, prefer close to Javascript over TS specifics
+- Prefer interfaces over types; avoid enums, use maps.
+- Use functional components with TypeScript interfaces.
+- Use function keyword for pure functions.
+- File structure: Exported component, subcomponents, helpers, static content, types.
+- Use existing code from the (mono)repo where possible.
+
+# Naming Conventions
+- Directories/Files: Use lowercase with dashes (e.g., components/auth-wizard).
+- Components: Favor named exports.

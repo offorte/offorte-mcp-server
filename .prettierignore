@@ -1,0 +1,7 @@
+.cache
+.cursor
+.history
+package.json
+public
+dist
+node_modules

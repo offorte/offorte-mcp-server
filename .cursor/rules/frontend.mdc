@@ -1,0 +1,23 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Frontend & Javasccript
+- Use Tailwind CSS for styling.
+- Follow mobile-first responsive design.
+- Avoid CSS-in-JS solutions (e.g., Emotion).
+- When creating a frontend based on an uploaded image, be as close to the original as possible and double check the styling so it matches the image exactly.
+- Use the installed dependencies over introducing something new.
+- Use existing components from the (mono)repo.
+- Use Prettier & Lint configurations from the (mono)repo to ensure consistent code style and best practices.
+- For if statements, always use braces, even for single-line blocks.
+- Use the installed dependencies over introducing something new.
+
+# Naming Conventions
+- Directories/Files: Use lowercase with dashes (e.g., components/auth-wizard).
+- Components: Favor named exports.
+
+# Package Manager
+- Use PNPM
+- Use fixed versions for dependencies

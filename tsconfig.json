@@ -1,0 +1,9 @@
+{
+	"extends": "@tsconfig/node22/tsconfig.json",
+	"compilerOptions": {
+		"module": "NodeNext",
+		"outDir": "dist",
+		"resolveJsonModule": true
+	},
+	"include": ["src"]
+}
