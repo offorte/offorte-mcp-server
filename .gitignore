@@ -20,6 +20,7 @@ Desktop.ini
 # App
 dist
 public
+.env
 
 # Test
 .coverage
