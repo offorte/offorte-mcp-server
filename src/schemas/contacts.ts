@@ -53,6 +53,68 @@ const proposalSchema = z
 	})
 	.passthrough();
 
+const organisationSchema = z
+	.object({
+		account_user_id: numberOrEmptyString,
+		account_user_name: stringOrNumber.optional(),
+		city: stringOrNumber,
+		coc_number: stringOrNumber.optional(),
+		country: stringOrNumber,
+		date_created: stringOrNumber,
+		email: stringOrNumber,
+		facebook: stringOrNumber,
+		fax: stringOrNumber.optional(),
+		id: z.number(),
+		instagram: stringOrNumber,
+		internet: stringOrNumber,
+		linkedin: stringOrNumber,
+		name: stringOrNumber,
+		people: z.array(personSchema).optional(),
+		phone: stringOrNumber,
+		proposals_open: z.number().optional(),
+		proposals_won: z.number().optional(),
+		state: stringOrNumber,
+		street: stringOrNumber,
+		twitter: stringOrNumber,
+		type: contactType,
+		vat_number: stringOrNumber.optional(),
+		zipcode: stringOrNumber,
+	})
+	.passthrough();
+
+export const contactOrganisationsListSchema = z.array(organisationSchema);
+
+const personOrOrganisationSchema = z.object({
+	id: z.number(),
+	contact_id: numberOrEmptyString,
+	type: contactType,
+	account_user_id: numberOrEmptyString,
+	account_user_name: stringOrNumber,
+	city: stringOrNumber,
+	country: stringOrNumber,
+	date_created: stringOrNumber,
+	email: stringOrNumber,
+	facebook: stringOrNumber,
+	firstname: stringOrNumber,
+	fullname: stringOrNumber,
+	instagram: stringOrNumber,
+	internet: stringOrNumber,
+	lastname: stringOrNumber,
+	linkedin: stringOrNumber,
+	mobile: stringOrNumber,
+	organisation: stringOrNumber,
+	phone: stringOrNumber,
+	proposals_open: z.number().optional(),
+	proposals_won: z.number().optional(),
+	salutation: stringOrNumber,
+	state: stringOrNumber,
+	street: stringOrNumber,
+	twitter: stringOrNumber,
+	zipcode: stringOrNumber,
+}).passthrough();
+
+export const contactPeopleListSchema = z.array(personOrOrganisationSchema);
+
 export const contactDetailsSchema = z
 	.object({
 		account_user_id: numberOrEmptyString,
@@ -81,3 +143,5 @@ export const contactDetailsSchema = z
 		zipcode: stringOrNumber,
 	})
 	.passthrough();
+
+

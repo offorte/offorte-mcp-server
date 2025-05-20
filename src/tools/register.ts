@@ -8,6 +8,8 @@ import { getEmailTemplatesTool } from './settings/get-email-templates.js';
 import { getTextTemplatesTool } from './settings/get-text-templates.js';
 import { getAccountUsersTool } from './account/get-users.js';
 import { getContactDetailsTool } from './contacts/get-contact-details.js';
+import { searchContactOrganisationsTool } from './contacts/search-contact-organisations.js';
+import { searchContactPeopleTool } from './contacts/search-contact-people.js';
 
 const tools = [
 	getInitialContextTool,
@@ -18,6 +20,8 @@ const tools = [
 	getEmailTemplatesTool,
 	getProposalTemplatesTool,
 	getTextTemplatesTool,
+	searchContactOrganisationsTool,
+	searchContactPeopleTool,
 ];
 
 export function registerTools({ server }: { server: FastMCP }) {
