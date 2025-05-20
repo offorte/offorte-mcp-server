@@ -2,7 +2,7 @@ import type { Tool } from 'fastmcp';
 import { get } from '../../utils/requests.js';
 import { proposalTemplatesSchema } from '../../schemas/favorites.js';
 import { emptyObject as parameters } from '../../utils/schema.js';
-import { message } from '../../utils/errors.js';
+import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 export const getProposalTemplatesTool: Tool<undefined, typeof parameters> = {
 	name: 'get_proposal_templates',
@@ -17,7 +17,7 @@ export const getProposalTemplatesTool: Tool<undefined, typeof parameters> = {
 		const parsed = proposalTemplatesSchema.safeParse(result);
 
 		if (!parsed.success) {
-			throw new Error(message('invalidApiResponse'));
+			throwApiInvalidResponseError(parsed.error);
 		}
 
 		return JSON.stringify(parsed.data);
