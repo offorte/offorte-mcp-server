@@ -1,29 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type Tool = {
-	name: string;
-	execute: (...args: any[]) => any;
-	[key: string]: any;
-};
+import type { Tool as FastMCPTool, ToolParameters, Context } from 'fastmcp';
 
 let initialContextSet = false;
 
-export function initialContextGuard<T extends Tool>(tool: T): T {
+export function initialContextGuard(tool: FastMCPTool<any, ToolParameters>): typeof tool {
 	if (tool.name === 'get_initial_context') {
 		return {
 			...tool,
-			execute: async (...args: any[]) => {
+			execute: async (args: any, context: Context<any>) => {
 				initialContextSet = true;
-				return tool.execute(...args);
+				return tool.execute(args, context);
 			},
-		} as T;
+		};
 	}
 	return {
 		...tool,
-		execute: async (...args: any[]) => {
+		execute: async (args: any, context: Context<any>) => {
 			if (!initialContextSet) {
 				throw new Error('Initial context has not been set. You must call get_initial_context before using this tool.');
 			}
-			return tool.execute(...args);
+			return tool.execute(args, context);
 		},
-	} as T;
+	};
 }
