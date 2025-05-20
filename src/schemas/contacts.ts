@@ -8,7 +8,7 @@ const personSchema = z
 	.object({
 		city: stringOrNumber,
 		country: stringOrNumber,
-		email: stringOrNumber,
+		email: z.string().email(),
 		facebook: stringOrNumber,
 		firstname: stringOrNumber,
 		fullname: stringOrNumber,
@@ -61,7 +61,7 @@ const organisationSchema = z
 		coc_number: stringOrNumber.optional(),
 		country: stringOrNumber,
 		date_created: stringOrNumber,
-		email: stringOrNumber,
+		email: z.string().email(),
 		facebook: stringOrNumber,
 		fax: stringOrNumber.optional(),
 		id: z.number(),
@@ -93,7 +93,7 @@ const personOrOrganisationSchema = z.object({
 	city: stringOrNumber,
 	country: stringOrNumber,
 	date_created: stringOrNumber,
-	email: stringOrNumber,
+	email: z.string().email(),
 	facebook: stringOrNumber,
 	firstname: stringOrNumber,
 	fullname: stringOrNumber,
@@ -123,7 +123,7 @@ export const contactDetailsSchema = z
 		coc_number: stringOrNumber,
 		country: stringOrNumber,
 		date_created: stringOrNumber,
-		email: stringOrNumber,
+		email: z.string().email(),
 		facebook: stringOrNumber,
 		fax: stringOrNumber,
 		id: z.number(),
@@ -141,6 +141,33 @@ export const contactDetailsSchema = z
 		type: contactType,
 		vat_number: stringOrNumber,
 		zipcode: stringOrNumber,
+	})
+	.passthrough();
+
+export const contactCreateSchema = z
+	.object({
+		type: contactType,
+		name: z.string(),
+		street: z.string().optional(),
+		zipcode: stringOrNumber.optional(),
+		city: z.string().optional(),
+		state: z.string().optional(),
+		country: z.string().optional(),
+		phone: stringOrNumber.optional(),
+		fax: stringOrNumber.optional(),
+		email: z.string().email(),
+		internet: z.string().optional(),
+		linkedin: z.string().optional(),
+		facebook: z.string().optional(),
+		twitter: z.string().optional(),
+		instagram: z.string().optional(),
+		coc_number: stringOrNumber.optional(),
+		vat_number: stringOrNumber.optional(),
+		tags: z.array(z.union([z.string(), z.object({ id: z.number(), name: z.string() })])).optional(),
+		firstname: stringOrNumber.optional(),
+		lastname: stringOrNumber.optional(),
+		salutation: z.string().optional(),
+		mobile: stringOrNumber.optional(),
 	})
 	.passthrough();
 

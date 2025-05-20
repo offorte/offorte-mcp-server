@@ -10,6 +10,7 @@ import { getAccountUsersTool } from './account/get-users.js';
 import { getContactDetailsTool } from './contacts/get-contact-details.js';
 import { searchContactOrganisationsTool } from './contacts/search-contact-organisations.js';
 import { searchContactPeopleTool } from './contacts/search-contact-people.js';
+import { createContactTool } from './contacts/create-contact.js';
 
 const tools = [
 	getInitialContextTool,
@@ -22,6 +23,7 @@ const tools = [
 	getTextTemplatesTool,
 	searchContactOrganisationsTool,
 	searchContactPeopleTool,
+	createContactTool,
 ];
 
 export function registerTools({ server }: { server: FastMCP }) {
