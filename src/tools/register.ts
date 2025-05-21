@@ -11,6 +11,7 @@ import { getContactDetailsTool } from './contacts/get-contact-details.js';
 import { searchContactOrganisationsTool } from './contacts/search-contact-organisations.js';
 import { searchContactPeopleTool } from './contacts/search-contact-people.js';
 import { createContactTool } from './contacts/create-contact.js';
+import { searchProposalsTool } from './proposals/search-proposals.js';
 
 const tools = [
 	getInitialContextTool,
@@ -24,6 +25,7 @@ const tools = [
 	searchContactOrganisationsTool,
 	searchContactPeopleTool,
 	createContactTool,
+	searchProposalsTool,
 ];
 
 export function registerTools({ server }: { server: FastMCP }) {
