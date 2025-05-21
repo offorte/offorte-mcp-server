@@ -2,14 +2,13 @@ import { type Tool } from 'fastmcp';
 import { z } from 'zod';
 import { get } from '../../utils/requests.js';
 import { contactDetailsSchema } from '../../schemas/contacts.js';
-import { stringOrNumber } from '../../utils/schema.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 const parameters = z.object({
-	contact_id: stringOrNumber,
+	contact_id: z.string(),
 });
 
-export const getContactDetailsTool: Tool<{ contact_id: string | number }, typeof parameters> = {
+export const getContactDetailsTool: Tool<{ contact_id: string }, typeof parameters> = {
 	name: 'get_contact_details',
 	description: 'Get all details for a contact by id.',
 	parameters,

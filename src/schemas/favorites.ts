@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { customFieldSchema } from './proposals.js';
-import { optionalId, stringOrNumber } from '../utils/schema.js';
+import { customFieldSchema } from './shared.js';
+import { optionalId } from '../utils/schema.js';
 
 export const proposalTemplateSchema = z
 	.object({
@@ -8,7 +8,7 @@ export const proposalTemplateSchema = z
 		custom_fields: z.array(customFieldSchema).optional(),
 		design_template_id: optionalId,
 		id: z.number(),
-		name: stringOrNumber,
+		name: z.string(),
 		text_template_id: optionalId,
 	})
 	.passthrough();

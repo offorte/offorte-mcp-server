@@ -10,7 +10,7 @@ const parameters = z.object({
 
 export const searchContactPeopleTool: Tool<{ search: string }, typeof parameters> = {
 	name: 'search_contact_people',
-	description: 'Search for people by name in the contacts directory; The result is a list of people who belong to an organisation or not (type person or organisation).',
+	description: `Search for people by name in the contacts directory.`,
 	parameters,
 	annotations: {
 		title: 'Search Contact People',

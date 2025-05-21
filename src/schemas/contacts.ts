@@ -1,174 +1,140 @@
 import { z } from 'zod';
-import { numberOrEmptyString, stringOrNumber } from '../utils/schema.js';
+import { optionalId } from '../utils/schema.js';
 import { tagsSchema } from './settings.js';
+import { proposalsListSchema } from './proposals.js';
+import { contactType } from './shared.js';
 
-const contactType = z.enum(['organisation', 'person']);
+const addressFields = {
+	city: z.string().optional(),
+	country: z.string().optional(),
+	state: z.string().optional(),
+	street: z.string().optional(),
+	zipcode: z.string().optional(),
+};
 
+const socialFields = {
+	facebook: z.string().optional(),
+	instagram: z.string(),
+	internet: z.string(),
+	linkedin: z.string(),
+	twitter: z.string(),
+};
+
+const contactFields = {
+	email: z.string().email().optional(),
+	phone: z.string().optional(),
+	mobile: z.string().optional(),
+	fax: z.string().optional(),
+};
+
+const personFields = {
+	firstname: z.string().optional(),
+	lastname: z.string().optional(),
+	fullname: z.string().optional(),
+	salutation: z.string().optional(),
+	total_proposals: z.number().optional(),
+};
+
+const organisationFields = {
+	name: z.string(),
+	coc_number: z.string().optional(),
+	vat_number: z.string().optional(),
+	account_user_id: optionalId,
+	account_user_name: z.string().optional(),
+	date_created: z.string(),
+	proposals_open: z.number().optional(),
+	proposals_won: z.number().optional(),
+	people: z.array(z.lazy(() => personSchema)).optional(),
+	type: contactType,
+};
+
+/**
+ * Schemas
+ */
 const personSchema = z
 	.object({
-		city: stringOrNumber,
-		country: stringOrNumber,
-		email: z.string().email(),
-		facebook: stringOrNumber,
-		firstname: stringOrNumber,
-		fullname: stringOrNumber,
 		id: z.number(),
-		instagram: stringOrNumber,
-		internet: stringOrNumber,
-		lastname: stringOrNumber,
-		linkedin: stringOrNumber,
-		mobile: stringOrNumber,
-		phone: stringOrNumber,
-		salutation: stringOrNumber,
-		state: stringOrNumber,
-		street: stringOrNumber,
-		total_proposals: z.number(),
-		twitter: stringOrNumber,
-		zipcode: stringOrNumber,
-	})
-	.passthrough();
-
-const proposalSchema = z
-	.object({
-		account_user_id: z.number(),
-		contact_name: stringOrNumber,
-		contact_person_fullname: stringOrNumber,
-		date_created: stringOrNumber,
-		id: z.number(),
-		name: stringOrNumber,
-		price_total: stringOrNumber,
-		proposal_nr: stringOrNumber,
-		status: stringOrNumber,
-		total_price: z.number(),
-		total_price_override: stringOrNumber,
-		version_id: z.number(),
-		directory_id: stringOrNumber,
-		date_modified: stringOrNumber,
-		date_viewed: stringOrNumber,
-		date_won: stringOrNumber,
-		date_modified_display: z.union([z.string(), z.boolean()]),
-		date_viewed_display: z.union([z.string(), z.boolean()]),
-		date_won_display: z.union([z.string(), z.boolean()]),
-		tags: z.array(z.any()),
+		...addressFields,
+		...socialFields,
+		...contactFields,
+		...personFields,
 	})
 	.passthrough();
 
 const organisationSchema = z
 	.object({
-		account_user_id: numberOrEmptyString,
-		account_user_name: stringOrNumber.optional(),
-		city: stringOrNumber,
-		coc_number: stringOrNumber.optional(),
-		country: stringOrNumber,
-		date_created: stringOrNumber,
-		email: z.string().email(),
-		facebook: stringOrNumber,
-		fax: stringOrNumber.optional(),
 		id: z.number(),
-		instagram: stringOrNumber,
-		internet: stringOrNumber,
-		linkedin: stringOrNumber,
-		name: stringOrNumber,
-		people: z.array(personSchema).optional(),
-		phone: stringOrNumber,
-		proposals_open: z.number().optional(),
-		proposals_won: z.number().optional(),
-		state: stringOrNumber,
-		street: stringOrNumber,
-		twitter: stringOrNumber,
-		type: contactType,
-		vat_number: stringOrNumber.optional(),
-		zipcode: stringOrNumber,
+		...addressFields,
+		...socialFields,
+		...contactFields,
+		...organisationFields,
 	})
 	.passthrough();
 
 export const contactOrganisationsListSchema = z.array(organisationSchema);
 
-const personOrOrganisationSchema = z.object({
-	id: z.number(),
-	contact_id: numberOrEmptyString,
-	type: contactType,
-	account_user_id: numberOrEmptyString,
-	account_user_name: stringOrNumber,
-	city: stringOrNumber,
-	country: stringOrNumber,
-	date_created: stringOrNumber,
-	email: z.string().email(),
-	facebook: stringOrNumber,
-	firstname: stringOrNumber,
-	fullname: stringOrNumber,
-	instagram: stringOrNumber,
-	internet: stringOrNumber,
-	lastname: stringOrNumber,
-	linkedin: stringOrNumber,
-	mobile: stringOrNumber,
-	organisation: stringOrNumber,
-	phone: stringOrNumber,
-	proposals_open: z.number().optional(),
-	proposals_won: z.number().optional(),
-	salutation: stringOrNumber,
-	state: stringOrNumber,
-	street: stringOrNumber,
-	twitter: stringOrNumber,
-	zipcode: stringOrNumber,
-}).passthrough();
+const personOrOrganisationSchema = z
+	.object({
+		id: z.number(),
+		contact_id: optionalId,
+		type: contactType,
+		account_user_id: optionalId,
+		account_user_name: z.string().optional(),
+		organisation: z.string(),
+		date_created: z.string(),
+		proposals_open: z.number().optional(),
+		proposals_won: z.number().optional(),
+		...addressFields,
+		...socialFields,
+		...contactFields,
+		firstname: z.string(),
+		lastname: z.string(),
+		fullname: z.string(),
+		salutation: z.string(),
+	})
+	.passthrough();
 
 export const contactPeopleListSchema = z.array(personOrOrganisationSchema);
 
 export const contactDetailsSchema = z
 	.object({
-		account_user_id: numberOrEmptyString,
-		account_user_name: stringOrNumber.optional(),
-		city: stringOrNumber,
-		coc_number: stringOrNumber,
-		country: stringOrNumber,
-		date_created: stringOrNumber,
-		email: z.string().email(),
-		facebook: stringOrNumber,
-		fax: stringOrNumber,
 		id: z.number(),
-		instagram: stringOrNumber,
-		internet: stringOrNumber,
-		linkedin: stringOrNumber,
-		name: stringOrNumber,
-		people: z.array(personSchema),
-		phone: stringOrNumber,
-		proposals: z.array(proposalSchema),
-		state: stringOrNumber,
-		street: stringOrNumber,
-		tags: tagsSchema,
-		twitter: stringOrNumber,
-		type: contactType,
-		vat_number: stringOrNumber,
-		zipcode: stringOrNumber,
+		...addressFields,
+		...socialFields,
+		...contactFields,
+		...organisationFields,
+		people: z.array(personSchema).optional(),
+		proposals: proposalsListSchema.optional(),
+		tags: tagsSchema.optional(),
 	})
 	.passthrough();
 
+/**
+ * Create contact schema
+ */
 export const contactCreateSchema = z
 	.object({
 		type: contactType,
 		name: z.string(),
 		street: z.string().optional(),
-		zipcode: stringOrNumber.optional(),
+		zipcode: z.string().optional(),
 		city: z.string().optional(),
 		state: z.string().optional(),
 		country: z.string().optional(),
-		phone: stringOrNumber.optional(),
-		fax: stringOrNumber.optional(),
+		phone: z.string().optional(),
+		fax: z.string().optional(),
 		email: z.string().email(),
 		internet: z.string().optional(),
 		linkedin: z.string().optional(),
 		facebook: z.string().optional(),
 		twitter: z.string().optional(),
 		instagram: z.string().optional(),
-		coc_number: stringOrNumber.optional(),
-		vat_number: stringOrNumber.optional(),
-		tags: z.array(z.union([z.string(), z.object({ id: z.number(), name: z.string() })])).optional(),
-		firstname: stringOrNumber.optional(),
-		lastname: stringOrNumber.optional(),
+		coc_number: z.string().optional(),
+		vat_number: z.string().optional(),
+		tags: tagsSchema.optional(),
+		firstname: z.string().optional(),
+		lastname: z.string().optional(),
 		salutation: z.string().optional(),
-		mobile: stringOrNumber.optional(),
+		mobile: z.string().optional(),
 	})
 	.passthrough();
-
-

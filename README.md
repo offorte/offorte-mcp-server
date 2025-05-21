@@ -11,8 +11,9 @@ While powerful, it's still evolving and may occasionally produce unexpected or u
 ## Goal & coverage
 
 The goal of this project is too create & send proposals using AI via the protocol.
-Because of the experimental character, we're not covering the full Offorte API and have limited the implementation to get, create & send proposal related tools.
-Tools which could lead to an AI delete stuff are not implemented.
+Because of the experimental character, the full Offorte API is not covered and have limited the implementation to get, create & send proposal related tools.
+Tools which could lead to an LLM updating and deleting stuff are not yet implemented.
+Update and delete commands might be added in the future, based on reallife results & user feedback.
 
 ## Offorte API
 

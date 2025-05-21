@@ -20,7 +20,7 @@ export const createContactTool: Tool<z.infer<typeof contactCreateSchema>, typeof
 		if (!parsed.success) {
 			throwApiInvalidResponseError(parsed.error);
 		}
-		
+
 		const result = await post('/contacts/', parsed.data);
 		return JSON.stringify(result);
 	},
