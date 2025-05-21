@@ -26,3 +26,16 @@ export const proposalListSchema = z
 	.passthrough();
 
 export const proposalsListSchema = z.array(proposalListSchema);
+
+export const proposalDirectorySchema = z.object({
+	id: z.number(),
+	name: z.string(),
+});
+
+export const proposalDirectoriesSchema = z.object({
+	closed: z.array(proposalDirectorySchema).optional(),
+	edit: z.array(proposalDirectorySchema).optional(),
+	lost: z.array(proposalDirectorySchema).optional(),
+	open: z.array(proposalDirectorySchema).optional(),
+	won: z.array(proposalDirectorySchema).optional(),
+});

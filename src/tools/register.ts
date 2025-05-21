@@ -12,6 +12,7 @@ import { searchContactOrganisationsTool } from './contacts/search-contact-organi
 import { searchContactPeopleTool } from './contacts/search-contact-people.js';
 import { createContactTool } from './contacts/create-contact.js';
 import { searchProposalsTool } from './proposals/search-proposals.js';
+import { getProposalDirectoriesTool } from './proposals/get-proposal-directories.js';
 
 const tools = [
 	getInitialContextTool,
@@ -20,12 +21,13 @@ const tools = [
 	getContactDetailsTool,
 	getDesignTemplatesTool,
 	getEmailTemplatesTool,
+	getProposalDirectoriesTool,
 	getProposalTemplatesTool,
 	getTextTemplatesTool,
 	searchContactOrganisationsTool,
 	searchContactPeopleTool,
-	createContactTool,
 	searchProposalsTool,
+	createContactTool,
 ];
 
 export function registerTools({ server }: { server: FastMCP }) {
