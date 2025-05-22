@@ -13,6 +13,7 @@ import { searchContactPeopleTool } from './contacts/search-contact-people.js';
 import { createContactTool } from './contacts/create-contact.js';
 import { searchProposalsTool } from './proposals/search-proposals.js';
 import { getProposalDirectoriesTool } from './proposals/get-proposal-directories.js';
+import { createProposalTool } from './proposals/create-proposal.js';
 
 const tools = [
 	getInitialContextTool,
@@ -28,6 +29,7 @@ const tools = [
 	searchContactPeopleTool,
 	searchProposalsTool,
 	createContactTool,
+	createProposalTool,
 ];
 
 export function registerTools({ server }: { server: FastMCP }) {
