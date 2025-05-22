@@ -6,7 +6,7 @@ import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 export const getDesignTemplatesTool: Tool<undefined, typeof parameters> = {
 	name: 'get_design_templates',
-	description: 'Lists available design templates which are used to create new proposals in Offorte.',
+	description: 'Lists available design templates which are used to create new proposals',
 	parameters,
 	annotations: {
 		title: 'Get Design Templates',

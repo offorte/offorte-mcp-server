@@ -6,7 +6,7 @@ import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 export const getEmailTemplatesTool: Tool<undefined, typeof parameters> = {
 	name: 'get_email_templates',
-	description: 'Lists available email templates which are used to send proposals in Offorte.',
+	description: 'Lists available email templates which are used to send proposals',
 	parameters,
 	annotations: {
 		title: 'Get Email Templates',

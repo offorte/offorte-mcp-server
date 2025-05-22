@@ -6,7 +6,7 @@ import { emptyObject as parameters } from '../../utils/schema.js';
 
 export const getProposalDirectoriesTool: Tool<undefined, typeof parameters> = {
 	name: 'get_proposal_directories',
-	description: 'Get all proposal directories grouped by status (edit, open, won, lost, closed).',
+	description: 'Get all proposal directories grouped by status (edit, open, won, lost, closed)',
 	parameters,
 	annotations: {
 		title: 'Get Proposal Directories',

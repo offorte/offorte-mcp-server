@@ -6,7 +6,7 @@ import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 export const getAccountUsersTool: Tool<undefined, typeof parameters> = {
 	name: 'get_account_users',
-	description: 'Lists all account users for the current account.',
+	description: 'Lists all account users for the current account',
 	parameters,
 	annotations: {
 		title: 'Get Account Users',

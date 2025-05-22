@@ -69,22 +69,18 @@ export const proposalContentSchema = z.object({
 	pricetables: z.array(proposalContentPricetableSchema),
 });
 
-export const createProposalParametersSchema = z.object({
-	account_user_id: z.number().optional(),
-	contact_id: z.number(),
-	contact_people: z.array(z.number()),
-	design_template_id: z.number(),
-	name: z.string(),
-	proposal_template_id: z.number(),
-	text_template_id: z.number(),
-	custom_fields: z.array(z.object({ name: z.string(), value: z.string() })).optional(),
-	// automations_set_id: z.number().optional(),
-	// content: proposalContentSchema.optional(),
-	// directory_id: z.number().optional(),
-	// tags: z.array(z.union([z.string(), z.object({ id: z.number(), name: z.string() })])).optional(),
-});
-
-export const createProposalResponseSchema = z.object({
+export const createProposalSchema = z.object({
 	id: z.number(),
 	version_id: z.number(),
+});
+
+export const sendProposalReceiverSchema = z.object({
+	email: z.string(),
+	fullname: z.string(),
+	id: z.number(),
+	proposal_link: z.string(),
+});
+
+export const sendProposalSchema = z.object({
+	receivers: z.array(sendProposalReceiverSchema),
 });

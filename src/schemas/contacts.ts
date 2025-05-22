@@ -122,7 +122,6 @@ export const contactCreateSchema = z
 		state: z.string().optional(),
 		country: z.string().optional(),
 		phone: z.string().optional(),
-		fax: z.string().optional(),
 		email: z.string().email(),
 		internet: z.string().optional(),
 		linkedin: z.string().optional(),

@@ -1,14 +1,13 @@
 import { type Tool } from 'fastmcp';
-import { z } from 'zod';
 import { post } from '../../utils/requests.js';
 import { contactCreateSchema } from '../../schemas/contacts.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 const parameters = contactCreateSchema;
 
-export const createContactTool: Tool<z.infer<typeof contactCreateSchema>, typeof parameters> = {
+export const createContactTool: Tool<typeof parameters._type, typeof parameters> = {
 	name: 'create_contact',
-	description: 'Create a new contact (organisation or person).',
+	description: 'Create a new contact (organisation or person/individual)',
 	parameters,
 	annotations: {
 		title: 'Create Contact',

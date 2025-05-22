@@ -8,9 +8,9 @@ const parameters = z.object({
 	search: z.string(),
 });
 
-export const searchContactPeopleTool: Tool<{ search: string }, typeof parameters> = {
+export const searchContactPeopleTool: Tool<typeof parameters._type, typeof parameters> = {
 	name: 'search_contact_people',
-	description: `Search for people by name in the contacts directory.`,
+	description: `Search for people by name in the contacts`,
 	parameters,
 	annotations: {
 		title: 'Search Contact People',

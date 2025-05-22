@@ -6,7 +6,7 @@ import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 export const getTextTemplatesTool: Tool<undefined, typeof parameters> = {
 	name: 'get_text_templates',
-	description: 'Lists available language text templates which are used to create new proposals in Offorte.',
+	description: 'Lists available language text templates which are used to create new proposals',
 	parameters,
 	annotations: {
 		title: 'Get Language Text Templates',

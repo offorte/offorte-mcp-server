@@ -8,9 +8,9 @@ const parameters = z.object({
 	search: z.string(),
 });
 
-export const searchProposalsTool: Tool<{ search: string }, typeof parameters> = {
+export const searchProposalsTool: Tool<typeof parameters._type, typeof parameters> = {
 	name: 'search_proposals',
-	description: 'Search for proposals by name or query.',
+	description: 'Search for proposals by query',
 	parameters,
 	annotations: {
 		title: 'Search Proposals',

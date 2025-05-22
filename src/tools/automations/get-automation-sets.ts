@@ -6,7 +6,7 @@ import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 export const getAutomationSetsTool: Tool<undefined, typeof parameters> = {
 	name: 'get_automation_sets',
-	description: 'Lists automation sets which are used as an optional input to create a new proposal in Offorte.',
+	description: 'Lists automation sets which are used as an optional input to create a new proposal',
 	parameters,
 	annotations: {
 		title: 'Get Automation Sets',
