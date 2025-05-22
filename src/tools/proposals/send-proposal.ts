@@ -7,7 +7,7 @@ import { z } from 'zod';
 const parameters = z.object({
 	proposal_id: z.number(),
 	send_message_id: z.number().optional(),
-	send_method: z.string().optional(),
+	send_method: z.enum(['offorte', 'self']).default('offorte').optional(),
 	send_message: z.string().optional(),
 	password_reset: z.boolean().optional(),
 });
