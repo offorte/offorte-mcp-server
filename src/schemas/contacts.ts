@@ -21,7 +21,7 @@ const socialFields = {
 };
 
 const contactFields = {
-	email: z.string().email().optional(),
+	email: z.string().optional(),
 	phone: z.string().optional(),
 	mobile: z.string().optional(),
 	fax: z.string().optional(),
@@ -122,7 +122,7 @@ export const contactCreateSchema = z
 		state: z.string().optional(),
 		country: z.string().optional(),
 		phone: z.string().optional(),
-		email: z.string().email(),
+		email: z.string().optional(),
 		internet: z.string().optional(),
 		linkedin: z.string().optional(),
 		facebook: z.string().optional(),

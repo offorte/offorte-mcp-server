@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosRequestConfig, Method } from 'axios';
 import { config } from '../config/offorte.js';
-import { logInfo, logError } from './logging.js';
 import { UserError } from 'fastmcp';
 
 interface RequestOptions {
@@ -30,33 +30,27 @@ export async function request({ url, method = 'GET', data, params, headers = {} 
 			...headers,
 		},
 	};
-	logInfo('Request', { method, url: conf.url, data, params, headers: conf.headers });
 	try {
 		const response = await axios(conf);
-		logInfo('Response', { method, url: conf.url, status: response.status, data: response.data });
 		return response.data;
 	} catch (err: unknown) {
-		if (axios.isAxiosError(err)) {
-			logError('AxiosError', {
-				method,
-				url: conf.url,
-				status: err.response?.status,
-				statusText: err.response?.statusText,
-				data: err.response?.data,
-				message: err.message,
-				code: err.code,
-			});
-			throw new UserError(`Request failed: ${err.message}`, {
-				method,
-				url: conf.url,
-				status: err.response?.status,
-				statusText: err.response?.statusText,
-				data: err.response?.data,
-				code: err.code,
-			});
-		}
-		logError('Unknown error', err);
-		throw err;
+		const isAxiosError = axios.isAxiosError(err);
+
+		const errorsString = isAxiosError && err.response?.data?.errors ? ` | Errors: ${JSON.stringify(err.response.data.errors)}` : '';
+		throw new UserError(
+			`Request failed: ${(err as any)['message'] || 'Unknown error'}${errorsString}`,
+			isAxiosError
+				? {
+						method,
+						url: conf.url,
+						status: err.response?.status,
+						statusText: err.response?.statusText,
+						data: err.response?.data,
+						code: err.code,
+						errors: err.response?.data?.errors,
+					}
+				: { err },
+		);
 	}
 }
 

@@ -7,8 +7,8 @@ It enables external models to create and send proposals via Offorte.
 Built for automation workflows, the [MCP](https://modelcontextprotocol.io/) makes it easy to integrate proposal actions into AI tools, chat interfaces, and autonomous systems.
 
 > **Early technology**
-Please note that MCP (Model Context Protocol) is a new approach to AI integration.
-While powerful, it's still evolving and may occasionally produce unexpected or undesired results.
+> Please note that MCP (Model Context Protocol) is a new approach to AI integration.
+> While powerful, it's still evolving and may occasionally produce unexpected or undesired results.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -26,6 +26,7 @@ Built for speed, flexibility, and real-world use, it combines automation and sma
 [Learn more about Offorte](https://www.offorte.com).
 
 ### API <!-- omit in toc -->
+
 The MCP server is using the Offorte Public API v2.
 Read the [API documentation](https://www.offorte.com/api-docs/) for more information.
 
@@ -95,19 +96,16 @@ Running it straight from the npm registry.
 
 ```json
 {
-  "mcpServers": {
-    "offorte-proposals": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "offorte-mcp-server"
-      ],
-      "env": {
-        "OFFORTE_ACCOUNT_NAME": "<YOUR_ACCOUNT_NAME>",
-        "OFFORTE_API_KEY": "<YOUR_TOKEN>"
-      }
-    }
-  }
+	"mcpServers": {
+		"offorte-proposals": {
+			"command": "npx",
+			"args": ["-y", "offorte-mcp-server"],
+			"env": {
+				"OFFORTE_ACCOUNT_NAME": "<YOUR_ACCOUNT_NAME>",
+				"OFFORTE_API_KEY": "<YOUR_TOKEN>"
+			}
+		}
+	}
 }
 ```
 
@@ -117,18 +115,16 @@ Dependencies should have been installed & the project is build before you use th
 
 ```json
 {
-  "mcpServers": {
-    "offorte-proposals": {
-      "command": "node",
-      "args": [
-        "/path/to/directory/offorte-mcp-server/dist/server.js"
-      ],
-      "env": {
-        "OFFORTE_ACCOUNT_NAME": "<YOUR_ACCOUNT_NAME>",
-        "OFFORTE_API_KEY": "<YOUR_TOKEN>"
-      }
-    }
-  }
+	"mcpServers": {
+		"offorte-proposals": {
+			"command": "node",
+			"args": ["/path/to/directory/offorte-mcp-server/dist/server.js"],
+			"env": {
+				"OFFORTE_ACCOUNT_NAME": "<YOUR_ACCOUNT_NAME>",
+				"OFFORTE_API_KEY": "<YOUR_TOKEN>"
+			}
+		}
+	}
 }
 ```
 
