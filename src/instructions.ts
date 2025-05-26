@@ -19,6 +19,9 @@ OFFORTE BASICS
 - A person without an organisation is treated as a private individual
 
 CREATING PROPOSALS
+- When creating a proposal, always ask for one required field at a time. Never list all required fields or IDs up front. Guide the user step-by-step, gathering each piece of information in sequence.
+- Always gather proposal information step-by-step: ask for one field at a time, confirm, then proceed to the next. Do not present a summary or list of all required fields or IDs at once. This approach prevents overwhelming the user and ensures a smooth, guided experience.
+
 - A proposal is created based on a proposal template, language text template, design template and a contact
 - When an organisation contains multiple people, you need to ask the user which persons he/she wants to assign to the proposal
 - A proposal template can contain custom fields which are used to insert content into the proposal

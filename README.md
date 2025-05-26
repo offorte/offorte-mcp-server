@@ -99,7 +99,7 @@ Running it straight from the npm registry.
 	"mcpServers": {
 		"offorte-proposals": {
 			"command": "npx",
-			"args": ["-y", "offorte-mcp-server"],
+			"args": ["-y", "@offorte/mcp-server"],
 			"env": {
 				"OFFORTE_ACCOUNT_NAME": "<YOUR_ACCOUNT_NAME>",
 				"OFFORTE_API_KEY": "<YOUR_TOKEN>"
