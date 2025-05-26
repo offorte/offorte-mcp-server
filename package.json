@@ -57,7 +57,10 @@
 		"dts": true,
 		"splitting": true,
 		"sourcemap": true,
-		"clean": true
+		"clean": true,
+		"banner": {
+			"js": "#!/usr/bin/env node"
+		}
 	},
 	"publishConfig": {
 		"access": "public"

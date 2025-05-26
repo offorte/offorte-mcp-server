@@ -5,3 +5,4 @@ package.json
 public
 dist
 node_modules
+pnpm-lock.yaml

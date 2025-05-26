@@ -1,10 +1,9 @@
 import { FastMCP } from 'fastmcp';
-import pkgJson from '../package.json' with { type: 'json' };
 import { registerTools } from './tools/register.js';
 
 const server = new FastMCP({
 	name: 'Offorte Proposals',
-	version: pkgJson.version as `${number}.${number}.${number}`,
+	version: (process.env.npm_package_version || '0.0.0') as `${number}.${number}.${number}`,
 });
 
 registerTools({ server });
