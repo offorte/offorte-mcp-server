@@ -11,7 +11,7 @@
 	"type": "module",
 	"main": "dist/server.js",
 	"bin": {
-		"offorte-mcp-server": "dist/server.js"
+		"offorte-mcp-server": "./dist/server.js"
 	},
 	"files": [
 		"dist"
@@ -22,7 +22,7 @@
 		"format": "prettier --write . && eslint --fix .",
 		"inspect": "CLIENT_PORT=8001 fastmcp inspect src/server.ts",
 		"lint": "prettier --check . && eslint . && tsc --noEmit",
-		"postinstall": "pnpm build",
+		"prepublishOnly": "npm run build",
 		"start": "node dist/server.js"
 	},
 	"dependencies": {
