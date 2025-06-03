@@ -2,7 +2,7 @@
 
 MCP server for Offorte - Create & send proposals using AI.
 
-This server acts as the bridge between AI agents and Offorte’s proposal engine.
+This server acts as the bridge between AI agents and Offorte's proposal engine.
 It enables external models to create and send proposals via Offorte.
 Built for automation workflows, the [MCP](https://modelcontextprotocol.io/) makes it easy to integrate proposal actions into AI tools, chat interfaces, and autonomous systems.
 
@@ -30,6 +30,11 @@ Built for speed, flexibility, and real-world use, it combines automation and sma
 The MCP server is using the Offorte Public API v2.
 Read the [API documentation](https://www.offorte.com/api-docs/) for more information.
 
+### Demo <!-- omit in toc -->
+
+Experience the future of proposals: voice-triggered, AI-powered, fully automated.
+See how Offorte connects voice and workflow in [this real demo](https://www.offorte.com/en/blog/proposal-software/handsfree-proposal-sending-with-mcp).
+
 ## Goals & Coverage
 
 The goal of this project is too create & send proposals using AI via the protocol.
@@ -42,6 +47,7 @@ Update and delete commands might be added in the future, based on reallife resul
 - Node.js (tested with Node.js `20.x.x`)
 - Offorte API Key (see [Authentication Section](https://www.offorte.com/api-docs/authentication#api-keys) of the Offorte API Docs)
 - PNPM for development
+- `TRANSPORT_TYPE` (optional): Set to `sse` to enable Server-Sent Events (SSE) mode, or leave unset/default for `stdio` (default: `stdio`).
 
 ## Available Tools
 

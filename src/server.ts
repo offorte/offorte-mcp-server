@@ -1,5 +1,7 @@
 import { FastMCP } from 'fastmcp';
 import { registerTools } from './tools/register.js';
+import { config } from './config/env.js';
+const { TRANSPORT_TYPE } = config;
 
 const server = new FastMCP({
 	name: 'Offorte Proposals',
@@ -8,6 +10,14 @@ const server = new FastMCP({
 
 registerTools({ server });
 
-server.start({
-	transportType: 'stdio',
-});
+if (TRANSPORT_TYPE === 'sse') {
+	server.start({
+		transportType: 'sse',
+		sse: {
+			endpoint: '/sse',
+			port: 3000,
+		},
+	} as { transportType: 'sse'; sse: { endpoint: `/${string}`; port: number } });
+} else {
+	server.start({ transportType: 'stdio' });
+}
