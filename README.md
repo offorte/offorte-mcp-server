@@ -2,6 +2,10 @@
 
 MCP server for Offorte - Create & send proposals using AI.
 
+<a href="https://glama.ai/mcp/servers/@offorte/offorte-mcp-server">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@offorte/offorte-mcp-server/badge" alt="Offorte Proposal Software MCP server" />
+</a>
+
 This server acts as the bridge between AI agents and Offorte's proposal engine.
 It enables external models to create and send proposals via Offorte.
 Built for automation workflows, the [MCP](https://modelcontextprotocol.io/) makes it easy to integrate proposal actions into AI tools, chat interfaces, and autonomous systems.
