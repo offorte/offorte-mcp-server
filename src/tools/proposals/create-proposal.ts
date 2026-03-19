@@ -19,7 +19,7 @@ const parameters = z.object({
 	// tags: z.array(z.union([z.string(), z.object({ id: z.number(), name: z.string() })])).optional(),
 });
 
-export const createProposalTool: Tool<typeof parameters._type, typeof parameters> = {
+export const createProposalTool: Tool<undefined, typeof parameters> = {
 	name: 'create_proposal',
 	description: 'Create a new proposal',
 	parameters,

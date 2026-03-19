@@ -28,7 +28,7 @@
 	"dependencies": {
 		"axios": "1.9.0",
 		"dotenv": "16.5.0",
-		"fastmcp": "1.27.6",
+		"fastmcp": "3.34.0",
 		"outdent": "0.8.0",
 		"zod": "3.24.4"
 	},
@@ -88,5 +88,6 @@
 		"automation",
 		"offorte mcp server",
 		"mcp server"
-	]
+	],
+	"packageManager": "pnpm@10.30.0+sha512.2b5753de015d480eeb88f5b5b61e0051f05b4301808a82ec8b840c9d2adf7748eb352c83f5c1593ca703ff1017295bc3fdd3119abb9686efc96b9fcb18200937"
 }

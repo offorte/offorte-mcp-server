@@ -11,7 +11,18 @@ const ConfiguredSchema = z.object({
 const EnvSchema = z
 	.object({
 		OFFORTE_API_HOST: z.string().optional().default('https://connect.offorte.com/api/v2/').describe('Offorte API host'),
-		TRANSPORT_TYPE: z.enum(['stdio', 'sse']).optional().default('stdio').describe('Transport type for MCP server'),
+		TRANSPORT_TYPE: z
+			.enum(['stdio', 'httpStream', 'sse'])
+			.optional()
+			.default('stdio')
+			.transform((val) => {
+				if (val === 'sse') {
+					console.warn('[DEPRECATED] TRANSPORT_TYPE="sse" is deprecated. Use "httpStream" instead.');
+					return 'httpStream' as const;
+				}
+				return val;
+			})
+			.describe('Transport type for MCP server'),
 	})
 	.merge(ConfiguredSchema);
 

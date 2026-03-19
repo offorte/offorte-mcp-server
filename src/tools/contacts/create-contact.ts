@@ -5,7 +5,7 @@ import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 const parameters = contactCreateSchema;
 
-export const createContactTool: Tool<typeof parameters._type, typeof parameters> = {
+export const createContactTool: Tool<undefined, typeof parameters> = {
 	name: 'create_contact',
 	description: 'Create a new contact (organisation or person/individual)',
 	parameters,

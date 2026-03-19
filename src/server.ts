@@ -10,14 +10,13 @@ const server = new FastMCP({
 
 registerTools({ server });
 
-if (TRANSPORT_TYPE === 'sse') {
+if (TRANSPORT_TYPE === 'httpStream') {
 	server.start({
-		transportType: 'sse',
-		sse: {
-			endpoint: '/sse',
+		transportType: 'httpStream',
+		httpStream: {
 			port: 3000,
 		},
-	} as { transportType: 'sse'; sse: { endpoint: `/${string}`; port: number } });
+	});
 } else {
 	server.start({ transportType: 'stdio' });
 }

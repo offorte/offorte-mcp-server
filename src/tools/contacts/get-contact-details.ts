@@ -8,7 +8,7 @@ const parameters = z.object({
 	contact_id: z.string(),
 });
 
-export const getContactDetailsTool: Tool<typeof parameters._type, typeof parameters> = {
+export const getContactDetailsTool: Tool<undefined, typeof parameters> = {
 	name: 'get_contact_details',
 	description: 'Get all details for a contact by id',
 	parameters,

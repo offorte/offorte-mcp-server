@@ -12,7 +12,7 @@ const parameters = z.object({
 	password_reset: z.boolean().optional(),
 });
 
-export const sendProposalTool: Tool<typeof parameters._type, typeof parameters> = {
+export const sendProposalTool: Tool<undefined, typeof parameters> = {
 	name: 'send_proposal',
 	description: 'Send a proposal to its assigned contacts',
 	parameters,
