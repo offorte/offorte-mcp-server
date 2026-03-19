@@ -14,15 +14,13 @@ jobs:
             pull-requests: write
             id-token: write
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
               with:
                   fetch-depth: 0
                   persist-credentials: false
 
             - name: 'setup pnpm'
               uses: pnpm/action-setup@v4
-              with:
-                  version: 10
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
