@@ -6,8 +6,8 @@ export const accountUserSchema = z
 		email: z.string(),
 		firstname: z.string(),
 		lastname: z.string(),
-		phone: z.string(),
-		jobtitle: z.string(),
+		phone: z.string().nullable(),
+		jobtitle: z.string().nullable(),
 		date_lastlogin: z.string(),
 	})
 	.passthrough();
