@@ -157,3 +157,8 @@ Check the NPM scripts for all commands, below is a short summary of the most imp
 | `pnpm dev`     | Start the development server          |
 | `pnpm inspect` | Inspect the server                    |
 | `pnpm format`  | Format code using Prettier and ESLint |
+
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/offorte-offorte-mcp-server).
+
