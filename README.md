@@ -38,9 +38,10 @@ See how Offorte connects voice and workflow in [this real demo](https://www.offo
 ## Goals & Coverage
 
 The goal of this project is too create & send proposals using AI via the protocol.
-Because of the experimental character, the full Offorte API is not covered and its limited to the tools needed to create & send proposals.
-Tools which could lead to an LLM updating and deleting stuff are not yet implemented.
-Update and delete commands might be added in the future, based on reallife results & user feedback.
+Because of the experimental character, the full Offorte API is not covered and its limited to the tools needed to create, copy & send proposals and to update their price tables.
+Update tools exist for proposal price tables only: `update_proposal_pricetables` replaces the rows of named price tables.
+Other update tools and delete tools are not implemented.
+They might be added in the future, based on reallife results & user feedback.
 
 ## Prerequisites
 
@@ -76,10 +77,13 @@ Update and delete commands might be added in the future, based on reallife resul
 
 ### Proposals <!-- omit in toc -->
 
+- **copy_proposal** – Copy a proposal into a new proposal with status edit and a new link
 - **create_proposal** – Create a new proposal
+- **get_proposal_details** – Get all details for a proposal by id, including its price tables with their Unique IDs and rows
 - **get_proposal_directories** – Get all proposal directories grouped by status
 - **search_proposals** – Search for proposals by query
 - **send_proposal** – Send a proposal to its assigned contacts
+- **update_proposal_pricetables** – Replace all rows of the named price tables in a proposal. Tables need a Unique ID. Won and lost proposals cannot be updated
 
 ### Settings <!-- omit in toc -->
 

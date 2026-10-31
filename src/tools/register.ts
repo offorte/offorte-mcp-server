@@ -12,9 +12,12 @@ import { searchContactOrganisationsTool } from './contacts/search-contact-organi
 import { searchContactPeopleTool } from './contacts/search-contact-people.js';
 import { createContactTool } from './contacts/create-contact.js';
 import { searchProposalsTool } from './proposals/search-proposals.js';
+import { getProposalDetailsTool } from './proposals/get-proposal-details.js';
 import { getProposalDirectoriesTool } from './proposals/get-proposal-directories.js';
 import { createProposalTool } from './proposals/create-proposal.js';
+import { copyProposalTool } from './proposals/copy-proposal.js';
 import { sendProposalTool } from './proposals/send-proposal.js';
+import { updateProposalPricetablesTool } from './proposals/update-proposal-pricetables.js';
 
 const tools = [
 	getInitialContextTool,
@@ -23,6 +26,7 @@ const tools = [
 	getContactDetailsTool,
 	getDesignTemplatesTool,
 	getEmailTemplatesTool,
+	getProposalDetailsTool,
 	getProposalDirectoriesTool,
 	getProposalTemplatesTool,
 	getTextTemplatesTool,
@@ -31,7 +35,9 @@ const tools = [
 	searchProposalsTool,
 	createContactTool,
 	createProposalTool,
+	copyProposalTool,
 	sendProposalTool,
+	updateProposalPricetablesTool,
 ];
 
 export function registerTools({ server }: { server: FastMCP }) {
