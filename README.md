@@ -83,7 +83,7 @@ They might be added in the future, based on reallife results & user feedback.
 - **get_proposal_directories** – Get all proposal directories grouped by status
 - **search_proposals** – Search for proposals by query
 - **send_proposal** – Send a proposal to its assigned contacts
-- **update_proposal_pricetables** – Replace all rows of the named price tables in a proposal. Tables need a Unique ID. Won and lost proposals cannot be updated
+- **update_proposal_pricetables** – Replace all rows of the named price tables in a proposal. Tables need a Unique ID. A Unique ID is text: copy it exactly from the price table settings, including any leading zeroes (`001` is not `1`), and never guess or normalize it. Won and lost proposals cannot be updated
 
 ### Settings <!-- omit in toc -->
 
