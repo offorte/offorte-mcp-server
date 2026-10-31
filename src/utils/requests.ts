@@ -65,3 +65,7 @@ export function post(url: string, data?: unknown, options: Omit<RequestOptions, 
 export function put(url: string, data?: unknown, options: Omit<RequestOptions, 'url' | 'method' | 'data'> = {}) {
 	return request({ url, method: 'PUT', data, ...options });
 }
+
+export function patch(url: string, data?: unknown, options: Omit<RequestOptions, 'url' | 'method' | 'data'> = {}) {
+	return request({ url, method: 'PATCH', data, ...options });
+}

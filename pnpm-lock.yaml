@@ -36,6 +36,9 @@ importers:
       chalk:
         specifier: 5.4.1
         version: 5.4.1
+      eslint:
+        specifier: 9.26.0
+        version: 9.26.0(jiti@2.4.2)
       eslint-config-prettier:
         specifier: 10.1.5
         version: 10.1.5(eslint@9.26.0(jiti@2.4.2))
