@@ -14,6 +14,7 @@ export const searchContactOrganisationsTool: Tool<undefined, typeof parameters> 
 	parameters,
 	annotations: {
 		title: 'Search Contact Organisations',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute({ search }) {

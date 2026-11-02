@@ -14,6 +14,7 @@ export const searchContactPeopleTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Search Contact People',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute({ search }) {

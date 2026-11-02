@@ -14,6 +14,7 @@ export const getContactDetailsTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get Contact Details',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute({ contact_id }) {

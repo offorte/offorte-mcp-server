@@ -10,6 +10,7 @@ export const getEmailTemplatesTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get Email Templates',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute() {

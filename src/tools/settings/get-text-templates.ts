@@ -10,6 +10,7 @@ export const getTextTemplatesTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get Language Text Templates',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute() {

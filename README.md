@@ -45,7 +45,7 @@ They might be added in the future, based on reallife results & user feedback.
 
 ## Prerequisites
 
-- Node.js (tested with Node.js `20.x.x`)
+- Node.js `24.x` LTS (`>=24`, see `.nvmrc`)
 - Offorte API Key (see [Authentication Section](https://www.offorte.com/api-docs/authentication#api-keys) of the Offorte API Docs)
 - PNPM for development
 - `TRANSPORT_TYPE` (optional): Set to `sse` to enable Server-Sent Events (SSE) mode, or leave unset/default for `stdio` (default: `stdio`).

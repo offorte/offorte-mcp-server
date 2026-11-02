@@ -14,6 +14,7 @@ export const searchProposalsTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Search Proposals',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute({ search }) {

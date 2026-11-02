@@ -14,6 +14,7 @@ export const getProposalDetailsTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get Proposal Details',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute({ proposal_id }) {

@@ -10,6 +10,7 @@ export const getProposalTemplatesTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get Proposal Templates',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute() {

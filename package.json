@@ -16,6 +16,9 @@
 	"files": [
 		"dist"
 	],
+	"engines": {
+		"node": ">=24"
+	},
 	"scripts": {
 		"build": "tsup && chmod 755 dist/server.js",
 		"dev": "fastmcp dev src/server.ts",
@@ -34,8 +37,8 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "9.26.0",
-		"@tsconfig/node22": "22.0.1",
-		"@types/node": "22.15.18",
+		"@tsconfig/node24": "24.0.3",
+		"@types/node": "24.19.2",
 		"chalk": "5.4.1",
 		"eslint": "9.26.0",
 		"eslint-config-prettier": "10.1.5",

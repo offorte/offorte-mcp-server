@@ -10,6 +10,7 @@ export const getAccountUsersTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get Account Users',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute() {

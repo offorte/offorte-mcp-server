@@ -19,6 +19,9 @@ export const copyProposalTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Copy Proposal',
+		readOnlyHint: false,
+		destructiveHint: false,
+		idempotentHint: false,
 		openWorldHint: true,
 	},
 	async execute({ proposal_id, ...body }) {

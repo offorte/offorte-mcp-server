@@ -10,6 +10,7 @@ export const getProposalDirectoriesTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get Proposal Directories',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute() {

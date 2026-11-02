@@ -25,6 +25,9 @@ export const createProposalTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Create Proposal',
+		readOnlyHint: false,
+		destructiveHint: false,
+		idempotentHint: false,
 		openWorldHint: true,
 	},
 	async execute(params) {
