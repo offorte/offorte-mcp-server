@@ -10,6 +10,7 @@ export const getDesignTemplatesTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get Design Templates',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute() {

@@ -16,6 +16,7 @@ export const updateProposalPricetablesTool: Tool<undefined, typeof parameters> =
 	parameters,
 	annotations: {
 		title: 'Update Proposal Price Tables',
+		readOnlyHint: false,
 		destructiveHint: true,
 		idempotentHint: true,
 		openWorldHint: true,

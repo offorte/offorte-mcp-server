@@ -18,6 +18,9 @@ export const sendProposalTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Send Proposal',
+		readOnlyHint: false,
+		destructiveHint: true,
+		idempotentHint: false,
 		openWorldHint: true,
 	},
 	async execute({ proposal_id, ...body }) {

@@ -11,6 +11,9 @@ export const createContactTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Create Contact',
+		readOnlyHint: false,
+		destructiveHint: false,
+		idempotentHint: false,
 		openWorldHint: true,
 	},
 	async execute(params) {

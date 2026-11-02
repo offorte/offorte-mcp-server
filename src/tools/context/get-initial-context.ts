@@ -10,6 +10,7 @@ export const getInitialContextTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get MCP Server Instructions',
+		readOnlyHint: true,
 		openWorldHint: false,
 	},
 	async execute() {

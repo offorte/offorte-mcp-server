@@ -10,6 +10,7 @@ export const getAutomationSetsTool: Tool<undefined, typeof parameters> = {
 	parameters,
 	annotations: {
 		title: 'Get Automation Sets',
+		readOnlyHint: true,
 		openWorldHint: true,
 	},
 	async execute() {
