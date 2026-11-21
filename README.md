@@ -47,6 +47,9 @@ They might be added in the future, based on reallife results & user feedback.
 
 - Node.js `24.x` LTS (`>=24`, see `.nvmrc`)
 - Offorte API Key (see [Authentication Section](https://www.offorte.com/api-docs/authentication#api-keys) of the Offorte API Docs)
+    - The server calls the Offorte API gateway at `https://gateway.offorte.com/api/v2/` and sends the key as `Authorization: Bearer <key>`.
+    - The gateway needs a V2 API key (it starts with `ofk_`). An account administrator creates it on the Integrations and API settings page in Offorte. Older API keys do not work on the gateway.
+    - Still on an older key? Pin the last version before the gateway (`npx -y @offorte/mcp-server@0`) until you have a V2 key.
 - PNPM for development
 - `TRANSPORT_TYPE` (optional): Set to `sse` to enable Server-Sent Events (SSE) mode, or leave unset/default for `stdio` (default: `stdio`).
 

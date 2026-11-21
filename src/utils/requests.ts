@@ -18,6 +18,12 @@ function buildUrl(url: string): string {
 	return `${config.apiUrl.replace(/\/$/, '')}/${url.replace(/^\//, '')}`;
 }
 
+// The gateway only accepts `Bearer <key>`. Keep a key that already has the prefix as it is.
+function authorizationHeader(apiKey: string): string {
+	const key = apiKey.trim();
+	return /^bearer\s/i.test(key) ? key : `Bearer ${key}`;
+}
+
 export async function request({ url, method = 'GET', data, params, headers = {} }: RequestOptions) {
 	const conf: AxiosRequestConfig = {
 		url: buildUrl(url),
@@ -25,7 +31,7 @@ export async function request({ url, method = 'GET', data, params, headers = {} 
 		data,
 		params,
 		headers: {
-			Authorization: config.apiKey,
+			Authorization: authorizationHeader(config.apiKey),
 			Accept: 'application/json',
 			...headers,
 		},
