@@ -10,7 +10,7 @@ const ConfiguredSchema = z.object({
 
 const EnvSchema = z
 	.object({
-		OFFORTE_API_HOST: z.string().optional().default('https://connect.offorte.com/api/v2/').describe('Offorte API host'),
+		OFFORTE_API_HOST: z.string().optional().default('https://gateway.offorte.com/api/v2/').describe('Offorte API host'),
 		TRANSPORT_TYPE: z
 			.enum(['stdio', 'httpStream', 'sse'])
 			.optional()
