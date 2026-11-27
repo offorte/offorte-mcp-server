@@ -5,6 +5,6 @@ export const automationSetSchema = z
 		id: z.number(),
 		name: z.string(),
 	})
-	.passthrough();
+	.loose();
 
 export const automationSetsSchema = z.array(automationSetSchema);

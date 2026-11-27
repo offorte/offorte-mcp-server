@@ -1,10 +1,9 @@
-import { type Tool } from 'fastmcp';
-import { get } from '../../utils/requests.js';
+import type { Tool } from '../../core/tool.js';
 import { accountUsersSchema } from '../../schemas/account.js';
 import { emptyObject as parameters } from '../../utils/schema.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
-export const getAccountUsersTool: Tool<undefined, typeof parameters> = {
+export const getAccountUsersTool: Tool<typeof parameters> = {
 	name: 'get_account_users',
 	description: 'Lists all account users for the current account',
 	parameters,
@@ -13,8 +12,8 @@ export const getAccountUsersTool: Tool<undefined, typeof parameters> = {
 		readOnlyHint: true,
 		openWorldHint: true,
 	},
-	async execute() {
-		const result = await get('/account/users');
+	async execute(_args, { api }) {
+		const result = await api.get('/account/users');
 		const parsed = accountUsersSchema.safeParse(result);
 
 		if (!parsed.success) {

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { optionalId } from '../utils/schema.js';
 import { tagsSchema } from './settings.js';
 import { proposalsListSchema } from './proposals.js';
-import { contactType } from './shared.js';
+import { contactType, tagsInputSchema } from './shared.js';
 
 const addressFields = {
 	city: z.string().nullable().optional(),
@@ -51,7 +51,7 @@ const organisationFields = {
 /**
  * Schemas
  */
-const personSchema = z
+export const personSchema = z
 	.object({
 		id: z.number(),
 		...addressFields,
@@ -59,7 +59,7 @@ const personSchema = z
 		...contactFields,
 		...personFields,
 	})
-	.passthrough();
+	.loose();
 
 const organisationSchema = z
 	.object({
@@ -69,7 +69,7 @@ const organisationSchema = z
 		...contactFields,
 		...organisationFields,
 	})
-	.passthrough();
+	.loose();
 
 export const contactOrganisationsListSchema = z.array(organisationSchema);
 
@@ -92,7 +92,7 @@ const personOrOrganisationSchema = z
 		fullname: z.string(),
 		salutation: z.string(),
 	})
-	.passthrough();
+	.loose();
 
 export const contactPeopleListSchema = z.array(personOrOrganisationSchema);
 
@@ -107,7 +107,7 @@ export const contactDetailsSchema = z
 		proposals: proposalsListSchema.optional(),
 		tags: tagsSchema.optional(),
 	})
-	.passthrough();
+	.loose();
 
 /**
  * Create contact schema
@@ -136,4 +136,61 @@ export const contactCreateSchema = z
 		salutation: z.string().optional(),
 		mobile: z.string().optional(),
 	})
-	.passthrough();
+	.loose();
+
+/**
+ * Contact write schemas
+ */
+const writeContactFields = {
+	street: z.string().optional(),
+	zipcode: z.string().optional(),
+	city: z.string().optional(),
+	state: z.string().optional(),
+	country: z.string().optional(),
+	phone: z.string().optional(),
+	email: z.string().optional(),
+	internet: z.string().optional(),
+	linkedin: z.string().optional(),
+	facebook: z.string().optional(),
+	twitter: z.string().optional(),
+	instagram: z.string().optional(),
+};
+
+const writePersonFields = {
+	firstname: z.string().optional(),
+	lastname: z.string().optional(),
+	salutation: z.string().optional(),
+	mobile: z.string().optional(),
+};
+
+const writeOrganisationFields = {
+	fax: z.string().optional(),
+	coc_number: z.string().optional(),
+	vat_number: z.string().optional(),
+};
+
+const writeTagsAndCustomFields = {
+	tags: tagsInputSchema
+		.optional()
+		.describe('Replaces all tags. Strings create new tags, { id, name } objects assign existing tags. An empty list changes nothing'),
+	// The API reads each custom field as its own custom_* key
+	custom_fields: z
+		.record(z.string().regex(/^custom_/), z.string())
+		.optional()
+		.describe('Custom field values by their custom_* key from get_contact_details, for example { "custom_hobby": "knitting" }'),
+};
+
+export const personWriteSchema = z.object({
+	name: z.string().optional().describe('Full name of the person'),
+	...writeContactFields,
+	...writePersonFields,
+	...writeTagsAndCustomFields,
+});
+
+export const contactUpdateSchema = z.object({
+	name: z.string().optional().describe('Name of the organisation, or full name of a person contact'),
+	...writeContactFields,
+	...writePersonFields,
+	...writeOrganisationFields,
+	...writeTagsAndCustomFields,
+});

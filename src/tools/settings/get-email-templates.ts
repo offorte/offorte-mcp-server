@@ -1,10 +1,9 @@
-import { type Tool } from 'fastmcp';
-import { get } from '../../utils/requests.js';
+import type { Tool } from '../../core/tool.js';
 import { emailTemplatesSchema } from '../../schemas/settings.js';
 import { emptyObject as parameters } from '../../utils/schema.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
-export const getEmailTemplatesTool: Tool<undefined, typeof parameters> = {
+export const getEmailTemplatesTool: Tool<typeof parameters> = {
 	name: 'get_email_templates',
 	description: 'Lists available email templates which are used to send proposals',
 	parameters,
@@ -13,8 +12,8 @@ export const getEmailTemplatesTool: Tool<undefined, typeof parameters> = {
 		readOnlyHint: true,
 		openWorldHint: true,
 	},
-	async execute() {
-		const result = await get('/settings/email-templates');
+	async execute(_args, { api }) {
+		const result = await api.get('/settings/email-templates');
 		const parsed = emailTemplatesSchema.safeParse(result);
 
 		if (!parsed.success) {

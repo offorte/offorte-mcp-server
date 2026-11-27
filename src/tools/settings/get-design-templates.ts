@@ -1,10 +1,9 @@
-import { type Tool } from 'fastmcp';
-import { get } from '../../utils/requests.js';
+import type { Tool } from '../../core/tool.js';
 import { designTemplatesSchema } from '../../schemas/settings.js';
 import { emptyObject as parameters } from '../../utils/schema.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
-export const getDesignTemplatesTool: Tool<undefined, typeof parameters> = {
+export const getDesignTemplatesTool: Tool<typeof parameters> = {
 	name: 'get_design_templates',
 	description: 'Lists available design templates which are used to create new proposals',
 	parameters,
@@ -13,8 +12,8 @@ export const getDesignTemplatesTool: Tool<undefined, typeof parameters> = {
 		readOnlyHint: true,
 		openWorldHint: true,
 	},
-	async execute() {
-		const result = await get('/settings/design-templates');
+	async execute(_args, { api }) {
+		const result = await api.get('/settings/design-templates');
 		const parsed = designTemplatesSchema.safeParse(result);
 
 		if (!parsed.success) {

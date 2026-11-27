@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { optionalId, stringOrNumber } from '../utils/schema.js';
+import { falseOrString, optionalId, stringOrNumber } from '../utils/schema.js';
 import { contactType, proposalStatus } from './shared.js';
 
 export const proposalListSchema = z
@@ -23,7 +23,7 @@ export const proposalListSchema = z
 		total_price_override: z.string().nullable().optional(),
 		version_id: z.number(),
 	})
-	.passthrough();
+	.loose();
 
 export const proposalsListSchema = z.array(proposalListSchema);
 
@@ -39,9 +39,6 @@ export const proposalDirectoriesSchema = z.object({
 	open: z.array(proposalDirectorySchema).optional(),
 	won: z.array(proposalDirectorySchema).optional(),
 });
-
-// The API uses false for an unset row option, for example selectable: false
-const falseOrString = z.union([z.literal(false), z.string()]);
 
 // Proposal details returns some row numbers as text, for example discount_value: "10", and an unset number as "".
 // Accept a row copied from details as it is, so a full-row update does not fail on these values.
@@ -98,9 +95,9 @@ export const proposalDetailsPricetableSchema = z
 	.object({
 		// The table Unique ID, as text. A table without a Unique ID gets "".
 		id: uniqueIdText,
-		rows: z.array(z.object({ type: z.string() }).passthrough()),
+		rows: z.array(z.object({ type: z.string() }).loose()),
 	})
-	.passthrough();
+	.loose();
 
 export const proposalDetailsSchema = z
 	.object({
@@ -116,7 +113,7 @@ export const proposalDetailsSchema = z
 			])
 			.transform((content) => (Array.isArray(content) ? { pricetables: [] } : content)),
 	})
-	.passthrough();
+	.loose();
 
 export const createProposalSchema = z.object({
 	id: z.number(),

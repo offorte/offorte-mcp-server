@@ -1,25 +1,30 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import type { Tool as FastMCPTool, ToolParameters, Context } from 'fastmcp';
+import type { Tool } from '../../core/tool.js';
 
-let initialContextSet = false;
+/**
+ * Makes every tool except get_initial_context fail until get_initial_context has run.
+ * Create one guard per server instance, so the state belongs to one connection.
+ */
+export function createInitialContextGuard() {
+	let initialContextSet = false;
 
-export function initialContextGuard(tool: FastMCPTool<any, ToolParameters>): typeof tool {
-	if (tool.name === 'get_initial_context') {
+	return function initialContextGuard(tool: Tool): Tool {
+		if (tool.name === 'get_initial_context') {
+			return {
+				...tool,
+				execute: async (args, context) => {
+					initialContextSet = true;
+					return tool.execute(args, context);
+				},
+			};
+		}
 		return {
 			...tool,
-			execute: async (args: any, context: Context<any>) => {
-				initialContextSet = true;
+			execute: async (args, context) => {
+				if (!initialContextSet) {
+					throw new Error('Initial context has not been set. You must call get_initial_context before using this tool.');
+				}
 				return tool.execute(args, context);
 			},
 		};
-	}
-	return {
-		...tool,
-		execute: async (args: any, context: Context<any>) => {
-			if (!initialContextSet) {
-				throw new Error('Initial context has not been set. You must call get_initial_context before using this tool.');
-			}
-			return tool.execute(args, context);
-		},
 	};
 }

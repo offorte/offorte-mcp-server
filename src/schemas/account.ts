@@ -10,6 +10,6 @@ export const accountUserSchema = z
 		jobtitle: z.string().nullable(),
 		date_lastlogin: z.string(),
 	})
-	.passthrough();
+	.loose();
 
 export const accountUsersSchema = z.array(accountUserSchema);

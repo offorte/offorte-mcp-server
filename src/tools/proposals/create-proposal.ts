@@ -1,7 +1,7 @@
-import { type Tool } from 'fastmcp';
+import type { Tool } from '../../core/tool.js';
 import { z } from 'zod';
-import { post } from '../../utils/requests.js';
 import { createProposalSchema } from '../../schemas/proposals.js';
+import { customFieldValuesSchema, tagsInputSchema } from '../../schemas/shared.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
 const parameters = z.object({
@@ -12,14 +12,14 @@ const parameters = z.object({
 	name: z.string(),
 	proposal_template_id: z.number(),
 	text_template_id: z.number(),
-	custom_fields: z.array(z.object({ name: z.string(), value: z.string() })).optional(),
-	// automations_set_id: z.number().optional(),
+	custom_fields: customFieldValuesSchema.optional(),
+	automations_set_id: z.number().optional().describe('See get_automation_sets'),
 	// content: proposalContentSchema.optional(),
-	// directory_id: z.number().optional(),
-	// tags: z.array(z.union([z.string(), z.object({ id: z.number(), name: z.string() })])).optional(),
+	directory_id: z.number().optional().describe('A proposal directory of status edit. See get_proposal_directories'),
+	tags: tagsInputSchema.optional().describe('Strings create new tags, { id, name } objects assign existing tags. See get_tags'),
 });
 
-export const createProposalTool: Tool<undefined, typeof parameters> = {
+export const createProposalTool: Tool<typeof parameters> = {
 	name: 'create_proposal',
 	description: 'Create a new proposal',
 	parameters,
@@ -30,8 +30,8 @@ export const createProposalTool: Tool<undefined, typeof parameters> = {
 		idempotentHint: false,
 		openWorldHint: true,
 	},
-	async execute(params) {
-		const result = await post('/proposals/', params);
+	async execute(params, { api }) {
+		const result = await api.post('/proposals/', params);
 		const parsed = createProposalSchema.safeParse(result);
 
 		if (!parsed.success) {

@@ -1,6 +1,5 @@
-import { type Tool } from 'fastmcp';
+import type { Tool } from '../../core/tool.js';
 import { z } from 'zod';
-import { get } from '../../utils/requests.js';
 import { proposalsListSchema } from '../../schemas/proposals.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
@@ -8,7 +7,7 @@ const parameters = z.object({
 	search: z.string(),
 });
 
-export const searchProposalsTool: Tool<undefined, typeof parameters> = {
+export const searchProposalsTool: Tool<typeof parameters> = {
 	name: 'search_proposals',
 	description: 'Search for proposals by query',
 	parameters,
@@ -17,8 +16,8 @@ export const searchProposalsTool: Tool<undefined, typeof parameters> = {
 		readOnlyHint: true,
 		openWorldHint: true,
 	},
-	async execute({ search }) {
-		const result = await get(`/proposals/open/?query=${encodeURIComponent(search)}`);
+	async execute({ search }, { api }) {
+		const result = await api.get(`/proposals/open/?query=${encodeURIComponent(search)}`);
 		const parsed = proposalsListSchema.safeParse(result);
 
 		if (!parsed.success) {

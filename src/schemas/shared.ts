@@ -10,6 +10,9 @@ export const customFieldSchema = z
 		required: z.boolean(),
 		type: z.enum(['text', 'textarea', 'html']),
 	})
-	.passthrough();
+	.loose();
 
-export const tagsSchema = z.array(z.union([z.string(), z.object({ id: z.number(), name: z.string() })]));
+export const tagsInputSchema = z.array(z.union([z.string(), z.object({ id: z.number(), name: z.string() })]));
+
+// Proposal custom field values
+export const customFieldValuesSchema = z.array(z.object({ name: z.string(), value: z.string() }));
