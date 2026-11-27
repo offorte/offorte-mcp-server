@@ -1,6 +1,5 @@
-import { type Tool } from 'fastmcp';
+import type { Tool } from '../../core/tool.js';
 import { z } from 'zod';
-import { post } from '../../utils/requests.js';
 import { createProposalSchema } from '../../schemas/proposals.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
@@ -13,7 +12,7 @@ const parameters = z.object({
 	account_user_id: z.number().optional(),
 });
 
-export const copyProposalTool: Tool<undefined, typeof parameters> = {
+export const copyProposalTool: Tool<typeof parameters> = {
 	name: 'copy_proposal',
 	description: 'Copy a proposal into a new proposal with status edit, a new proposal number and a new link',
 	parameters,
@@ -24,8 +23,8 @@ export const copyProposalTool: Tool<undefined, typeof parameters> = {
 		idempotentHint: false,
 		openWorldHint: true,
 	},
-	async execute({ proposal_id, ...body }) {
-		const result = await post(`/proposals/${proposal_id}/copy/`, body);
+	async execute({ proposal_id, ...body }, { api }) {
+		const result = await api.post(`/proposals/${proposal_id}/copy/`, body);
 		const parsed = createProposalSchema.safeParse(result);
 
 		if (!parsed.success) {

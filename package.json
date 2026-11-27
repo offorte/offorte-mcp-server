@@ -21,22 +21,28 @@
 	},
 	"scripts": {
 		"build": "tsup && chmod 755 dist/server.js",
-		"dev": "fastmcp dev src/server.ts",
+		"dev": "mcp-inspector --tui -- tsx src/server.ts",
 		"format": "prettier --write . && eslint --fix .",
-		"inspect": "CLIENT_PORT=8001 fastmcp inspect src/server.ts",
+		"inspect": "CLIENT_PORT=8001 mcp-inspector -- tsx src/server.ts",
 		"lint": "prettier --check . && eslint . && tsc --noEmit",
 		"prepublishOnly": "npm run build",
-		"start": "node dist/server.js"
+		"start": "node dist/server.js",
+		"test": "pnpm build && vitest run"
 	},
 	"dependencies": {
+		"@hono/node-server": "2.1.8",
+		"@modelcontextprotocol/hono": "2.0.2",
+		"@modelcontextprotocol/server": "2.4.0",
 		"axios": "1.9.0",
 		"dotenv": "16.5.0",
-		"fastmcp": "3.34.0",
+		"hono": "4.13.19",
 		"outdent": "0.8.0",
-		"zod": "3.24.4"
+		"zod": "4.6.7"
 	},
 	"devDependencies": {
 		"@eslint/js": "9.26.0",
+		"@modelcontextprotocol/client": "2.4.0",
+		"@modelcontextprotocol/inspector": "2.15.0",
 		"@tsconfig/node24": "24.0.3",
 		"@types/node": "24.19.2",
 		"chalk": "5.4.1",
@@ -49,7 +55,8 @@
 		"tsup": "8.4.0",
 		"tsx": "4.19.4",
 		"typescript": "5.8.3",
-		"typescript-eslint": "8.32.1"
+		"typescript-eslint": "8.32.1",
+		"vitest": "5.1.0"
 	},
 	"tsup": {
 		"entry": [

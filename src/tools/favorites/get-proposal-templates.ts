@@ -1,10 +1,9 @@
-import type { Tool } from 'fastmcp';
-import { get } from '../../utils/requests.js';
+import type { Tool } from '../../core/tool.js';
 import { proposalTemplatesSchema } from '../../schemas/favorites.js';
 import { emptyObject as parameters } from '../../utils/schema.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
-export const getProposalTemplatesTool: Tool<undefined, typeof parameters> = {
+export const getProposalTemplatesTool: Tool<typeof parameters> = {
 	name: 'get_proposal_templates',
 	description: `Lists proposal templates which are used as starting points to create new proposals`,
 	parameters,
@@ -13,8 +12,8 @@ export const getProposalTemplatesTool: Tool<undefined, typeof parameters> = {
 		readOnlyHint: true,
 		openWorldHint: true,
 	},
-	async execute() {
-		const result = await get('/favorites/proposals');
+	async execute(_args, { api }) {
+		const result = await api.get('/favorites/proposals');
 		const parsed = proposalTemplatesSchema.safeParse(result);
 
 		if (!parsed.success) {

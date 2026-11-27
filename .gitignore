@@ -25,3 +25,7 @@ public
 # Test
 .coverage
 test/results/
+
+# PRDs
+ai/prd/
+docs/prd/

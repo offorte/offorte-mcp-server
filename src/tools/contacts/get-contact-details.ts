@@ -1,6 +1,5 @@
-import { type Tool } from 'fastmcp';
+import type { Tool } from '../../core/tool.js';
 import { z } from 'zod';
-import { get } from '../../utils/requests.js';
 import { contactDetailsSchema } from '../../schemas/contacts.js';
 import { throwApiInvalidResponseError } from '../../utils/errors.js';
 
@@ -8,7 +7,7 @@ const parameters = z.object({
 	contact_id: z.string(),
 });
 
-export const getContactDetailsTool: Tool<undefined, typeof parameters> = {
+export const getContactDetailsTool: Tool<typeof parameters> = {
 	name: 'get_contact_details',
 	description: 'Get all details for a contact by id',
 	parameters,
@@ -17,8 +16,8 @@ export const getContactDetailsTool: Tool<undefined, typeof parameters> = {
 		readOnlyHint: true,
 		openWorldHint: true,
 	},
-	async execute({ contact_id }) {
-		const result = await get(`/contacts/${contact_id}`);
+	async execute({ contact_id }, { api }) {
+		const result = await api.get(`/contacts/${contact_id}`);
 		const parsed = contactDetailsSchema.safeParse(result);
 
 		if (!parsed.success) {

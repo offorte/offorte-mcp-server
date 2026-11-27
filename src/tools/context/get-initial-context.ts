@@ -1,31 +1,30 @@
-import type { Tool } from 'fastmcp';
+import type { Tool } from '../../core/tool.js';
 import { outdent } from 'outdent';
-import { config } from '../../config/offorte.js';
 import { INSTRUCTIONS } from '../../instructions.js';
 import { emptyObject as parameters } from '../../utils/schema.js';
 
-export const getInitialContextTool: Tool<undefined, typeof parameters> = {
+export const getInitialContextTool: Tool<typeof parameters> = {
 	name: 'get_initial_context',
-	description: `IMPORTANT: This tool must be called before using any other tools. It will get usage instructions & Offorte context for this MCP server.`,
+	description: `IMPORTANT: Call this tool once at the start of each conversation, before any other tool. It returns the usage instructions and the Offorte account context.`,
 	parameters,
 	annotations: {
 		title: 'Get MCP Server Instructions',
 		readOnlyHint: true,
 		openWorldHint: false,
 	},
-	async execute() {
+	async execute(_args, { accountName }) {
 		const currentDate = new Date().toLocaleDateString('en-US');
 
 		const context = outdent`
-            ${INSTRUCTIONS}
+			${INSTRUCTIONS}
 
-            Context for your Offorte instance:
+			Context for your Offorte instance:
 
 			<context>
-			    Account Name: ${config.accountName}
+			    Account Name: ${accountName}
 			    Date today: ${currentDate}
-			</content>
-	  `;
+			</context>
+		`;
 
 		return context;
 	},

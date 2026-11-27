@@ -11,6 +11,6 @@ export const proposalTemplateSchema = z
 		name: z.string(),
 		text_template_id: optionalId,
 	})
-	.passthrough();
+	.loose();
 
 export const proposalTemplatesSchema = z.array(proposalTemplateSchema);

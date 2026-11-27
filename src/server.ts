@@ -1,22 +1,11 @@
-import { FastMCP } from 'fastmcp';
-import { registerTools } from './tools/register.js';
 import { config } from './config/env.js';
-const { TRANSPORT_TYPE } = config;
+import { startHttp } from './entries/http.js';
+import { startStdio } from './entries/stdio.js';
 
-const server = new FastMCP({
-	name: 'Offorte Proposals',
-	version: (process.env.npm_package_version || '0.0.0') as `${number}.${number}.${number}`,
-});
+const version = process.env.npm_package_version || '0.0.0';
 
-registerTools({ server });
-
-if (TRANSPORT_TYPE === 'httpStream') {
-	server.start({
-		transportType: 'httpStream',
-		httpStream: {
-			port: 3000,
-		},
-	});
+if (config.transportType === 'httpStream') {
+	startHttp({ apiHost: config.apiHost, version, credentials: config.credentials, ...config.http });
 } else {
-	server.start({ transportType: 'stdio' });
+	startStdio({ apiHost: config.apiHost, version, credentials: config.credentials });
 }

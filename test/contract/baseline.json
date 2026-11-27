@@ -1,0 +1,2857 @@
+{
+	"recordedFrom": "commit 4037cda (FastMCP 4.28.4)",
+	"tools": [
+		{
+			"name": "get_initial_context",
+			"description": "IMPORTANT: Call this tool once at the start of each conversation, before any other tool. It returns the usage instructions and the Offorte account context.",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get MCP Server Instructions",
+				"readOnlyHint": true,
+				"openWorldHint": false
+			}
+		},
+		{
+			"name": "get_account_users",
+			"description": "Lists all account users for the current account",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Account Users",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_automation_sets",
+			"description": "Lists automation sets which are used as an optional input to create a new proposal",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Automation Sets",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_contact_details",
+			"description": "Get all details for a contact by id",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"contact_id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"contact_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Contact Details",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_design_templates",
+			"description": "Lists available design templates which are used to create new proposals",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Design Templates",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_email_templates",
+			"description": "Lists available email templates which are used to send proposals",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Email Templates",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_proposal_details",
+			"description": "Get all details for a proposal by id, including its price tables with their Unique IDs and rows",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"proposal_id": {
+						"type": "number"
+					}
+				},
+				"required": [
+					"proposal_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Proposal Details",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_proposal_directories",
+			"description": "Get all proposal directories grouped by status (edit, open, won, lost, closed)",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Proposal Directories",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_proposal_templates",
+			"description": "Lists proposal templates which are used as starting points to create new proposals",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Proposal Templates",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_product_directories",
+			"description": "Lists the directories of the product catalog. Use a directory id with get_products and create_product",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Product Directories",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_products",
+			"description": "Lists the catalog products of one product directory, with name, short description, price, VAT, SKU, selectable and recurring",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"directory_id": {
+						"type": "number",
+						"description": "See get_product_directories"
+					}
+				},
+				"required": [
+					"directory_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Products",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_tags",
+			"description": "Lists the existing tags of the account. Assign an existing tag as { id, name } instead of creating a near-duplicate",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Tags",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_text_templates",
+			"description": "Lists available language text templates which are used to create new proposals",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get Language Text Templates",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "get_vat_groups",
+			"description": "Lists the VAT groups of the account with their VAT percentage. Use a VAT group id as vat_id for products",
+			"inputSchema": {
+				"type": "object",
+				"properties": {},
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Get VAT Groups",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "list_proposals",
+			"description": "List proposals by status, optionally of one directory. Without directory_id the list holds every proposal of that status, also the ones in directories. A page has at most 50 proposals. A page with fewer than 50 is the last page. Deleted proposals are not listed",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"status": {
+						"type": "string",
+						"enum": [
+							"edit",
+							"open",
+							"won",
+							"lost",
+							"closed"
+						]
+					},
+					"directory_id": {
+						"type": "integer",
+						"exclusiveMinimum": 0,
+						"description": "Only list this directory. See get_proposal_directories"
+					},
+					"sort": {
+						"type": "string",
+						"enum": [
+							"name",
+							"date_created",
+							"date_modified",
+							"date_openclient"
+						],
+						"description": "Sort order. Default: name"
+					},
+					"page": {
+						"type": "integer",
+						"minimum": 1,
+						"description": "Page number, starting at 1"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "List Proposals",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "search_contact_organisations",
+			"description": "Search for organisations by name in the contacts",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"search": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"search"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Search Contact Organisations",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "search_contact_people",
+			"description": "Search for people by name in the contacts",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"search": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"search"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Search Contact People",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "search_proposals",
+			"description": "Search for proposals by query",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"search": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"search"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Search Proposals",
+				"readOnlyHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "create_contact",
+			"description": "Create a new contact (organisation or person/individual). Search with search_contact_organisations or search_contact_people first. When the contact exists, ask the user whether to use it instead",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": [
+							"organisation",
+							"person"
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"street": {
+						"type": "string"
+					},
+					"zipcode": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"state": {
+						"type": "string"
+					},
+					"country": {
+						"type": "string"
+					},
+					"phone": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"internet": {
+						"type": "string"
+					},
+					"linkedin": {
+						"type": "string"
+					},
+					"facebook": {
+						"type": "string"
+					},
+					"twitter": {
+						"type": "string"
+					},
+					"instagram": {
+						"type": "string"
+					},
+					"coc_number": {
+						"type": "string"
+					},
+					"vat_number": {
+						"type": "string"
+					},
+					"tags": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "number"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"id",
+								"name"
+							],
+							"additionalProperties": true
+						}
+					},
+					"firstname": {
+						"type": "string"
+					},
+					"lastname": {
+						"type": "string"
+					},
+					"salutation": {
+						"type": "string"
+					},
+					"mobile": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"type",
+					"name"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Create Contact",
+				"readOnlyHint": false,
+				"destructiveHint": false,
+				"idempotentHint": false,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "create_contact_person",
+			"description": "Add a new person to an existing organisation. The new person id works as a receiver (contact_people) in create_proposal, copy_proposal and update_proposal. Returns the created person",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"contact_id": {
+						"type": "number",
+						"description": "The organisation that the person joins"
+					},
+					"name": {
+						"type": "string",
+						"description": "Full name of the person"
+					},
+					"street": {
+						"type": "string"
+					},
+					"zipcode": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"state": {
+						"type": "string"
+					},
+					"country": {
+						"type": "string"
+					},
+					"phone": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"internet": {
+						"type": "string"
+					},
+					"linkedin": {
+						"type": "string"
+					},
+					"facebook": {
+						"type": "string"
+					},
+					"twitter": {
+						"type": "string"
+					},
+					"instagram": {
+						"type": "string"
+					},
+					"firstname": {
+						"type": "string"
+					},
+					"lastname": {
+						"type": "string"
+					},
+					"salutation": {
+						"type": "string"
+					},
+					"mobile": {
+						"type": "string"
+					},
+					"tags": {
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"type": "string"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "number"
+										},
+										"name": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"id",
+										"name"
+									],
+									"additionalProperties": false
+								}
+							]
+						},
+						"description": "Replaces all tags. Strings create new tags, { id, name } objects assign existing tags. An empty list changes nothing"
+					},
+					"custom_fields": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string"
+						},
+						"propertyNames": {
+							"pattern": "^custom_"
+						},
+						"description": "Custom field values by their custom_* key from get_contact_details, for example { \"custom_hobby\": \"knitting\" }"
+					}
+				},
+				"required": [
+					"contact_id",
+					"name"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Create Contact Person",
+				"readOnlyHint": false,
+				"destructiveHint": false,
+				"idempotentHint": false,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "create_product",
+			"description": "Add a product to the product catalog. Ask the user to confirm the price first. Take directory_id only from get_product_directories and vat_id only from get_vat_groups, and never guess them: the API silently uses the first directory or VAT group for an unknown id. The account plan limits the number of products. Existing proposals do not change. Returns the new product_id",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"directory_id": {
+						"type": "number",
+						"description": "See get_product_directories"
+					},
+					"name": {
+						"type": "string"
+					},
+					"price": {
+						"type": "number"
+					},
+					"vat_id": {
+						"type": "number",
+						"description": "See get_vat_groups"
+					},
+					"sku": {
+						"type": "string"
+					},
+					"descr_short": {
+						"type": "string",
+						"description": "Short description"
+					},
+					"selectable": {
+						"anyOf": [
+							{
+								"type": "boolean",
+								"const": false
+							},
+							{
+								"type": "string",
+								"enum": [
+									"check",
+									"radio"
+								]
+							}
+						]
+					},
+					"recurring": {
+						"anyOf": [
+							{
+								"type": "boolean",
+								"const": false
+							},
+							{
+								"type": "string",
+								"enum": [
+									"month",
+									"year"
+								]
+							}
+						]
+					}
+				},
+				"required": [
+					"directory_id",
+					"name",
+					"price",
+					"vat_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Create Product",
+				"readOnlyHint": false,
+				"destructiveHint": false,
+				"idempotentHint": false,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "create_product_directory",
+			"description": "Create a directory in the product catalog. The API returns no id, so this returns all product directories. The new directory has the given name and the highest id",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Create Product Directory",
+				"readOnlyHint": false,
+				"destructiveHint": false,
+				"idempotentHint": false,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "create_proposal",
+			"description": "Create a new proposal",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"account_user_id": {
+						"type": "number"
+					},
+					"contact_id": {
+						"type": "number"
+					},
+					"contact_people": {
+						"type": "array",
+						"items": {
+							"type": "number"
+						}
+					},
+					"design_template_id": {
+						"type": "number"
+					},
+					"name": {
+						"type": "string"
+					},
+					"proposal_template_id": {
+						"type": "number"
+					},
+					"text_template_id": {
+						"type": "number"
+					},
+					"custom_fields": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"name": {
+									"type": "string"
+								},
+								"value": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"name",
+								"value"
+							],
+							"additionalProperties": false
+						}
+					},
+					"automations_set_id": {
+						"type": "number",
+						"description": "See get_automation_sets"
+					},
+					"directory_id": {
+						"type": "number",
+						"description": "A proposal directory of status edit. See get_proposal_directories"
+					},
+					"tags": {
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"type": "string"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "number"
+										},
+										"name": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"id",
+										"name"
+									],
+									"additionalProperties": false
+								}
+							]
+						},
+						"description": "Strings create new tags, { id, name } objects assign existing tags. See get_tags"
+					}
+				},
+				"required": [
+					"contact_id",
+					"contact_people",
+					"design_template_id",
+					"name",
+					"proposal_template_id",
+					"text_template_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Create Proposal",
+				"readOnlyHint": false,
+				"destructiveHint": false,
+				"idempotentHint": false,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "copy_proposal",
+			"description": "Copy a proposal into a new proposal with status edit, a new proposal number and a new link",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"proposal_id": {
+						"type": "number"
+					},
+					"name": {
+						"type": "string"
+					},
+					"contact_id": {
+						"type": "number"
+					},
+					"contact_people": {
+						"type": "array",
+						"items": {
+							"type": "number"
+						}
+					},
+					"directory_id": {
+						"type": "number"
+					},
+					"account_user_id": {
+						"type": "number"
+					}
+				},
+				"required": [
+					"proposal_id",
+					"name",
+					"contact_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Copy Proposal",
+				"readOnlyHint": false,
+				"destructiveHint": false,
+				"idempotentHint": false,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "send_proposal",
+			"description": "Send a proposal to its assigned contacts",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"proposal_id": {
+						"type": "number"
+					},
+					"send_message_id": {
+						"type": "number"
+					},
+					"send_method": {
+						"type": "string",
+						"enum": [
+							"offorte",
+							"self"
+						],
+						"default": "offorte"
+					},
+					"send_message": {
+						"type": "string"
+					},
+					"password_reset": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"proposal_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Send Proposal",
+				"readOnlyHint": false,
+				"destructiveHint": true,
+				"idempotentHint": false,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "update_contact",
+			"description": "Change an organisation or a person contact, for example its address or email address. Only the sent fields change. An empty string clears a field, except email: an empty or invalid email makes the API save nothing from the call. To change tags or custom fields, read the current values with get_contact_details first. Returns the contact details after the change",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"contact_id": {
+						"type": "number"
+					},
+					"name": {
+						"type": "string",
+						"description": "Name of the organisation, or full name of a person contact"
+					},
+					"street": {
+						"type": "string"
+					},
+					"zipcode": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"state": {
+						"type": "string"
+					},
+					"country": {
+						"type": "string"
+					},
+					"phone": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"internet": {
+						"type": "string"
+					},
+					"linkedin": {
+						"type": "string"
+					},
+					"facebook": {
+						"type": "string"
+					},
+					"twitter": {
+						"type": "string"
+					},
+					"instagram": {
+						"type": "string"
+					},
+					"firstname": {
+						"type": "string"
+					},
+					"lastname": {
+						"type": "string"
+					},
+					"salutation": {
+						"type": "string"
+					},
+					"mobile": {
+						"type": "string"
+					},
+					"fax": {
+						"type": "string"
+					},
+					"coc_number": {
+						"type": "string"
+					},
+					"vat_number": {
+						"type": "string"
+					},
+					"tags": {
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"type": "string"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "number"
+										},
+										"name": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"id",
+										"name"
+									],
+									"additionalProperties": false
+								}
+							]
+						},
+						"description": "Replaces all tags. Strings create new tags, { id, name } objects assign existing tags. An empty list changes nothing"
+					},
+					"custom_fields": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string"
+						},
+						"propertyNames": {
+							"pattern": "^custom_"
+						},
+						"description": "Custom field values by their custom_* key from get_contact_details, for example { \"custom_hobby\": \"knitting\" }"
+					}
+				},
+				"required": [
+					"contact_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Update Contact",
+				"readOnlyHint": false,
+				"destructiveHint": true,
+				"idempotentHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "update_contact_person",
+			"description": "Change a person of an organisation, for example to add the email address that a receiver needs. Only the sent fields change. An empty string clears a field, except email: an empty or invalid email makes the API save nothing from the call. To change tags or custom fields, read the current values with get_contact_details first. Returns the person after the change",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"contact_id": {
+						"type": "number",
+						"description": "The organisation of the person"
+					},
+					"person_id": {
+						"type": "number"
+					},
+					"name": {
+						"type": "string",
+						"description": "Full name of the person"
+					},
+					"street": {
+						"type": "string"
+					},
+					"zipcode": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"state": {
+						"type": "string"
+					},
+					"country": {
+						"type": "string"
+					},
+					"phone": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"internet": {
+						"type": "string"
+					},
+					"linkedin": {
+						"type": "string"
+					},
+					"facebook": {
+						"type": "string"
+					},
+					"twitter": {
+						"type": "string"
+					},
+					"instagram": {
+						"type": "string"
+					},
+					"firstname": {
+						"type": "string"
+					},
+					"lastname": {
+						"type": "string"
+					},
+					"salutation": {
+						"type": "string"
+					},
+					"mobile": {
+						"type": "string"
+					},
+					"tags": {
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"type": "string"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "number"
+										},
+										"name": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"id",
+										"name"
+									],
+									"additionalProperties": false
+								}
+							]
+						},
+						"description": "Replaces all tags. Strings create new tags, { id, name } objects assign existing tags. An empty list changes nothing"
+					},
+					"custom_fields": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string"
+						},
+						"propertyNames": {
+							"pattern": "^custom_"
+						},
+						"description": "Custom field values by their custom_* key from get_contact_details, for example { \"custom_hobby\": \"knitting\" }"
+					}
+				},
+				"required": [
+					"contact_id",
+					"person_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Update Contact Person",
+				"readOnlyHint": false,
+				"destructiveHint": true,
+				"idempotentHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "update_product",
+			"description": "Replace all values of a catalog product. Read the product with get_products first and send every field, also the ones that do not change. Ask the user to confirm a price change first. Take vat_id only from get_vat_groups and directory_id only from get_product_directories, and never guess them. Existing proposals do not change",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"product_id": {
+						"type": "number"
+					},
+					"name": {
+						"type": "string"
+					},
+					"price": {
+						"type": "number"
+					},
+					"vat_id": {
+						"type": "number",
+						"description": "See get_vat_groups"
+					},
+					"sku": {
+						"type": "string",
+						"description": "Send the current value to keep it"
+					},
+					"descr_short": {
+						"type": "string",
+						"description": "Short description. Send the current value to keep it"
+					},
+					"selectable": {
+						"anyOf": [
+							{
+								"type": "boolean",
+								"const": false
+							},
+							{
+								"type": "string",
+								"enum": [
+									"check",
+									"radio"
+								]
+							}
+						]
+					},
+					"recurring": {
+						"anyOf": [
+							{
+								"type": "boolean",
+								"const": false
+							},
+							{
+								"type": "string",
+								"enum": [
+									"month",
+									"year"
+								]
+							}
+						]
+					},
+					"directory_id": {
+						"type": "number",
+						"description": "Moves the product to this directory. See get_product_directories"
+					}
+				},
+				"required": [
+					"product_id",
+					"name",
+					"price",
+					"vat_id",
+					"sku",
+					"descr_short",
+					"selectable",
+					"recurring"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Update Product",
+				"readOnlyHint": false,
+				"destructiveHint": true,
+				"idempotentHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "update_product_directory",
+			"description": "Rename a directory of the product catalog",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"directory_id": {
+						"type": "number"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"directory_id",
+					"name"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Update Product Directory",
+				"readOnlyHint": false,
+				"destructiveHint": true,
+				"idempotentHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "update_proposal",
+			"description": "Change proposal details: name, user, contact and receivers, tags, custom fields, manual total, design or text template. Only the sent fields change. On an open proposal the customer sees the change on the same link, so tell the user this and ask them to confirm first. To change tags or custom fields, read the current values with get_proposal_details first. The API saves the fields one by one, so after an error some fields can be saved: call get_proposal_details before you try again. Returns the proposal details after the change",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"proposal_id": {
+						"type": "number"
+					},
+					"name": {
+						"type": "string"
+					},
+					"account_user_id": {
+						"type": "number",
+						"description": "The user who owns the proposal. See get_account_users"
+					},
+					"contact_id": {
+						"type": "number",
+						"description": "A new contact resets the receivers to the defaults of that contact. A won proposal cannot change contact"
+					},
+					"contact_people": {
+						"type": "array",
+						"items": {
+							"type": "number"
+						},
+						"description": "Receivers: person ids of the organisation in contact_id. Each receiver needs an email address"
+					},
+					"tags": {
+						"type": "array",
+						"items": {
+							"anyOf": [
+								{
+									"type": "string"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "number"
+										},
+										"name": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"id",
+										"name"
+									],
+									"additionalProperties": false
+								}
+							]
+						},
+						"description": "Replaces all tags. Strings create new tags, { id, name } objects assign existing tags. See get_tags"
+					},
+					"custom_fields": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"name": {
+									"type": "string"
+								},
+								"value": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"name",
+								"value"
+							],
+							"additionalProperties": false
+						}
+					},
+					"price_total": {
+						"type": "number",
+						"description": "Manual total. It overrides the total from the price tables. A later price-table update clears it"
+					},
+					"design_template_id": {
+						"type": "number"
+					},
+					"text_template_id": {
+						"type": "number"
+					}
+				},
+				"required": [
+					"proposal_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Update Proposal",
+				"readOnlyHint": false,
+				"destructiveHint": true,
+				"idempotentHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "update_proposal_pricetables",
+			"description": "Replace all rows of the named price tables in a proposal. Tables that are not named stay unchanged. Send every row of a named table, also the rows that do not change. Read the table ids with get_proposal_details first and never guess one. A table with id \"\" has no Unique ID and cannot be updated: tell the user to set one in the price table settings. get_proposal_details drops leading zeros from a Unique ID with only digits (\"001\" comes back as \"1\"). When an update fails with \"no price table with this id\", ask the user for the exact Unique ID. The result then does not list that table: call get_proposal_details to check its rows. The update clears a manual proposal total. On an open proposal the customer sees the change at once on the same link and loses their choices on replaced rows, so tell the user this and ask them to confirm first. Tell the user to close the proposal in the Editor first: an open Editor tab can save later and overwrite the change. Returns the updated tables and the proposal total",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"proposal_id": {
+						"type": "number"
+					},
+					"pricetables": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "string",
+									"minLength": 1
+								},
+								"rows": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"content": {
+												"type": "string"
+											},
+											"discount_type": {
+												"anyOf": [
+													{
+														"anyOf": [
+															{
+																"type": "boolean",
+																"const": false
+															},
+															{
+																"type": "string"
+															}
+														]
+													},
+													{
+														"type": "null"
+													}
+												]
+											},
+											"discount_value": {
+												"anyOf": [
+													{
+														"anyOf": [
+															{
+																"type": "number"
+															},
+															{
+																"type": "string",
+																"const": ""
+															},
+															{
+																"type": "string",
+																"pattern": "^-?\\d+(\\.\\d+)?$"
+															}
+														]
+													},
+													{
+														"type": "null"
+													}
+												]
+											},
+											"hide_price": {
+												"type": [
+													"boolean",
+													"null"
+												]
+											},
+											"hide_quantity": {
+												"type": [
+													"boolean",
+													"null"
+												]
+											},
+											"price": {
+												"type": [
+													"number",
+													"null"
+												]
+											},
+											"product_id": {
+												"anyOf": [
+													{
+														"$ref": "#/properties/pricetables/items/properties/rows/items/properties/discount_value/anyOf/0"
+													},
+													{
+														"type": "null"
+													}
+												]
+											},
+											"quantity": {
+												"type": [
+													"number",
+													"null"
+												]
+											},
+											"recurring_include_in_totals": {
+												"type": [
+													"boolean",
+													"null"
+												]
+											},
+											"recurring_type": {
+												"anyOf": [
+													{
+														"$ref": "#/properties/pricetables/items/properties/rows/items/properties/discount_type/anyOf/0"
+													},
+													{
+														"type": "null"
+													}
+												]
+											},
+											"selectable": {
+												"anyOf": [
+													{
+														"$ref": "#/properties/pricetables/items/properties/rows/items/properties/discount_type/anyOf/0"
+													},
+													{
+														"type": "null"
+													}
+												]
+											},
+											"sku": {
+												"anyOf": [
+													{
+														"type": [
+															"string",
+															"number"
+														]
+													},
+													{
+														"type": "null"
+													}
+												]
+											},
+											"type": {
+												"type": "string"
+											},
+											"unique_id": {
+												"anyOf": [
+													{
+														"type": [
+															"number",
+															"string"
+														]
+													},
+													{
+														"type": "null"
+													}
+												]
+											},
+											"user_quantity": {
+												"type": [
+													"boolean",
+													"null"
+												]
+											},
+											"user_selected": {
+												"type": [
+													"boolean",
+													"null"
+												]
+											},
+											"vat_percentage": {
+												"type": [
+													"number",
+													"null"
+												]
+											}
+										},
+										"required": [
+											"content",
+											"type"
+										],
+										"additionalProperties": false
+									}
+								}
+							},
+							"required": [
+								"id",
+								"rows"
+							],
+							"additionalProperties": false
+						}
+					}
+				},
+				"required": [
+					"proposal_id",
+					"pricetables"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Update Proposal Price Tables",
+				"readOnlyHint": false,
+				"destructiveHint": true,
+				"idempotentHint": true,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "update_proposal_status",
+			"description": "Change the status of a proposal. Ask the user to confirm first. Won runs the \"proposal won\" automations, sends the proposal_won webhook and stores the approval data. Lost and closed run the \"proposal lost or closed\" automations. Open or won uses one API credit when the proposal was never sent or charged before. The proposal leaves its directory. A won proposal cannot change status with this tool. The current status changes nothing. To send a proposal, use send_proposal. Returns the proposal details after the change",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"proposal_id": {
+						"type": "number"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"edit",
+							"open",
+							"won",
+							"lost",
+							"closed"
+						]
+					}
+				},
+				"required": [
+					"proposal_id",
+					"status"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Update Proposal Status",
+				"readOnlyHint": false,
+				"destructiveHint": true,
+				"idempotentHint": false,
+				"openWorldHint": true
+			}
+		},
+		{
+			"name": "delete_proposal",
+			"description": "Move a proposal to the trashcan. Confirm the proposal name with the user first. A user can restore it in Offorte under Settings > Trashcan",
+			"inputSchema": {
+				"type": "object",
+				"properties": {
+					"proposal_id": {
+						"type": "number"
+					}
+				},
+				"required": [
+					"proposal_id"
+				],
+				"additionalProperties": false,
+				"$schema": "http://json-schema.org/draft-07/schema#"
+			},
+			"annotations": {
+				"title": "Delete Proposal",
+				"readOnlyHint": false,
+				"destructiveHint": true,
+				"idempotentHint": false,
+				"openWorldHint": true
+			}
+		}
+	],
+	"guard": {
+		"requests": [],
+		"result": {
+			"text": [
+				"Tool 'get_account_users' execution failed: Initial context has not been set. You must call get_initial_context before using this tool."
+			],
+			"isError": true
+		}
+	},
+	"unknownTool": {
+		"requests": [],
+		"protocolError": {
+			"code": -32602,
+			"message": "MCP error -32602: Unknown tool: no_such_tool"
+		}
+	},
+	"cases": {
+		"get_initial_context": {
+			"requests": [],
+			"result": {
+				"text": [
+					"You are a helpful assistant integrated with Offorte Proposal Software via the Model Context Protocol (MCP).\n\nIMPORTANT FIRST STEP:\n- Always call get_initial_context tool first to initialize the session before using any other tools\n- This is mandatory for all operations and will give you essential information about the current Offorte environment\n\nWHAT YOU CAN DO\nYou can help users by:\n- Answering questions about their Offorte account\n- Retrieving proposal or contact data\n- Listing proposals by status\n- Creating and sending proposals to customers\n- Copying proposals and updating their price tables\n- Changing proposal details and status, and moving proposals to the trashcan\n- Adding people to organisations and fixing contact details\n- Reading and maintaining the product catalog\n\nOFFORTE BASICS\n- A proposal is an online, interactive document that outlines a business offer to a customer\n- Proposals are sent via email with a link and can be signed online\n- A proposal can be signed online for approval by the contact\n- A contact can be a person (individual) or an organisation\n- An organisation may have multiple people\n- A person without an organisation is treated as a private individual\n\nCREATING PROPOSALS\n- When creating a proposal, always ask for one required field at a time. Never list all required fields or IDs up front. Guide the user step-by-step, gathering each piece of information in sequence.\n- Always gather proposal information step-by-step: ask for one field at a time, confirm, then proceed to the next. Do not present a summary or list of all required fields or IDs at once. This approach prevents overwhelming the user and ensures a smooth, guided experience.\n\n- A proposal is created based on a proposal template, language text template, design template and a contact\n- When an organisation contains multiple people, you need to ask the user which persons he/she wants to assign to the proposal\n- A proposal template can contain custom fields which are used to insert content into the proposal\n- If the selected proposal template has custom fields, go through all fields with the user and fill them in.\n\nTo create a proposal, you need:\n\t1.\tContact (organisation + person)\n\t2.\tProposal template\n\t3.\tLanguage text template\n\t4.\tDesign template\n\nUse:\n\t•\tsearch_contact_organisations and search_contact_people to find contacts\n\t•\tcreate_contact to create one if not found (ask first if user wants to use existing)\n\t•\tcreate_contact_person to add a new person to an existing organisation. Use the new person id as a receiver in contact_people\n\t•\tget_proposal_templates, get_text_templates, and get_design_templates to fetch templates\n\n- Receivers need an email address. When a receiver has none, add it with update_contact_person (a person of an organisation) or update_contact (a person contact)\n- create_proposal can also set automations_set_id (get_automation_sets), directory_id (an edit directory from get_proposal_directories) and tags (get_tags). Only set them when the user asks for it\n\nTo fill the price tables of a new proposal, create_proposal cannot add rows. Use three calls:\n\t1.\tcreate_proposal to create the proposal\n\t2.\tget_proposal_details with the new proposal id to read the price table IDs\n\t3.\tupdate_proposal_pricetables to send the rows\n\nUPDATING PRICE TABLES:\n- Use update_proposal_pricetables to change the rows of price tables in an existing proposal. Other proposal content cannot be changed. Use update_proposal for the proposal details and update_proposal_status for the status\n- To use catalog products in price rows, find them with get_product_directories and get_products. Use the product name as the row content, and copy price, vat_percentage, sku, and the product id as product_id into the row\n- The price table ID (content.pricetables[].id) is the Unique ID from the price table settings in the Editor or in the proposal template\n- Each row needs a type: price, discount, subtotal or title. A price row needs content, quantity, price and vat_percentage. A discount row needs content, discount_value and discount_type. Subtotal and title rows need content. Only send the fields that belong to the row type\n- A price row with vat_percentage null uses the default VAT of the table. Keep null to keep that default\n- After an update, the total is calculated again from the price tables\n- Won and lost proposals cannot be updated\n- When an update fails, read the error text. It names the table ID, the row index and the field. Fix that row and try again\n\nUPDATING PROPOSAL DETAILS:\n- Use update_proposal to change the name, user, contact, receivers, tags, custom fields, manual total, design template or text template. Only the sent fields change\n- Use get_tags to reuse existing tags\n- price_total sets a manual total. Tell the user that it overrides the total from the price tables, and that a later price-table update clears it\n- After an update error, some fields can already be saved. Call get_proposal_details to see what was saved before you try again\n\nCHANGING THE PROPOSAL STATUS:\n- Use update_proposal_status\n- Tell the user that won, lost and closed can run their automations, for example emails\n- To send a proposal, use send_proposal, not status open\n- A won proposal cannot change status through this server. Tell the user to make that change in Offorte\n\nLISTING PROPOSALS:\n- Use list_proposals to list proposals by status (edit, open, won, lost, closed), optionally of one directory. Use search_proposals to find proposals by text\n- list_proposals returns 50 proposals per page. Ask for the next page only when the user needs more\n\nDELETING PROPOSALS:\n- Use delete_proposal\n- Tell the user that the proposal goes to the trashcan, and that it can be restored in Offorte under Settings > Trashcan\n\nCOPYING PROPOSALS:\n- Use copy_proposal to copy an existing proposal. The copy is a new proposal with status edit, a new proposal number and a new link\n- The copy keeps the content, images, attachments, tags and the price tables with their Unique IDs\n- To make a new proposal from an earlier one with new prices: first copy_proposal, then get_proposal_details on the copy, then update_proposal_pricetables on the copy\n\nSENDING PROPOSALS:\n- After creating a proposal, you can send it to its assigned contacts using the send_proposal tool\n- Use send_proposal to send it via: offorte (email sent by system) or self (user sends it manually)\n- Use get_email_templates to fetch available templates\n- Either use send_message_id or ask the user for a custom send_message\n\nCREATING CONTACTS\n- Use the create_contact tool to create a new contact\n- The full name and email address are the most important fields\n- Only ask for optional fields if the user asks for it\n\nCHANGING CONTACTS\n- Use update_contact for an organisation or a person contact, and update_contact_person for a person of an organisation. Only the sent fields change\n\nPRODUCT CATALOG\n- Use create_product_directory to add a product directory and update_product_directory to rename one\n\nWRITING TEXTS\n- When writing proposal texts, use a professional yet conversational tone\n- Focus on value proposition and benefits rather than just features\n- Make content engaging, persuasive and customer-centric\n- Include clear calls-to-action and next steps\n- Highlight unique selling points and competitive advantages\n- Use active voice and positive language\n- Keep paragraphs concise and scannable\n- Address potential objections proactively\n- Maintain a balance between being informative and sales-oriented\n- Use industry-specific terminology appropriately\n- Include social proof, case studies, or testimonials when relevant\n- Focus on ROI and business outcomes\n- End with a strong closing that encourages action\n- Avoid generic content - make each proposal feel tailored\n\nRESPONSE FORMAT:\n- When listing items, only mention the most relevant field per item, e.g. name, label, etc.\n- Always use human understandable language and avoid technical jargon\n- When a list of items is longer than 3 items, only mention the first 3 items and then say \"and more\"\n- Never mention ID's, unless the user asks for it\n- Keep your responses concise but thorough\n- Confirm actions, give next steps, and avoid overexplaining\n\nACTION-FIRST APPROACH:\n- When a user asks for something (e.g. create/send proposal), do it immediately. When a tool description says to confirm first, ask the user before you call that tool\n- After performing the action, provide a short confirmation, key details and logical next steps\n\nERROR HANDLING:\n- If you encounter an error, clearly explain what went wrong\n- Suggest how to fix or proceed\n- Always validate required fields and contact existence\n- The Offorte API limits the number of requests. Run tool calls one after the other, not at the same time\n- When a call fails with status 429, wait a few seconds and try it again. When the error says that a change was saved, do not repeat that change\n\nBEST PRACTICES:\n- Be clear, concise, and direct\n- Never introduce yourself or write long greetings\n- Provide guidance only when needed\n- Always focus on helping users achieve their goals quickly\n- Never ask the user for optional fields unless they ask for it\n\nYou have access to powerful tools that can help you work with Offorte Proposal Software.\nStart with get_initial_context and then use the appropriate tools based on the user's needs.\n\n\nContext for your Offorte instance:\n\n<context>\n    Account Name: acme\n    Date today: <date>\n</context>"
+				],
+				"isError": false
+			}
+		},
+		"get_account_users": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/account/users",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":1,\"email\":\"ann@acme.test\",\"firstname\":\"Ann\",\"lastname\":\"Lee\",\"phone\":null,\"jobtitle\":null,\"date_lastlogin\":\"2026-11-01 10:00:00\",\"extra\":\"kept\"}]"
+				],
+				"isError": false
+			}
+		},
+		"get_automation_sets": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/automations/sets",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":3,\"name\":\"Default\"}]"
+				],
+				"isError": false
+			}
+		},
+		"get_contact_details": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/contacts/10",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":10,\"city\":\"Utrecht\",\"name\":\"Acme BV\",\"date_created\":\"2026-01-01\",\"people\":[{\"id\":11,\"email\":\"bo@acme.test\",\"firstname\":\"Bo\",\"lastname\":\"Ek\",\"fullname\":\"Bo Ek\",\"extra\":\"kept\"}],\"type\":\"organisation\",\"proposals\":[{\"id\":100,\"name\":\"Website\",\"account_user_id\":1,\"contact_id\":10,\"contact_name\":\"Acme BV\",\"date_created\":\"2026-02-01 09:00:00\",\"directory_id\":null,\"price_total\":\"1000.00\",\"proposal_nr\":\"2026-001\",\"status\":\"open\",\"version_id\":200,\"extra\":\"kept\"}],\"tags\":[{\"id\":7,\"name\":\"vip\"}],\"custom_hobby\":\"knitting\"}"
+				],
+				"isError": false
+			}
+		},
+		"get_design_templates": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/settings/design-templates",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":2,\"name\":\"Clean\",\"extra\":\"kept\"}]"
+				],
+				"isError": false
+			}
+		},
+		"get_email_templates": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/settings/email-templates",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":2,\"name\":\"Clean\",\"extra\":\"kept\"}]"
+				],
+				"isError": false
+			}
+		},
+		"get_proposal_details": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":100,\"name\":\"Website\",\"status\":\"open\",\"price_total\":\"1000.00\",\"content\":{\"pricetables\":[{\"id\":\"pt1\",\"rows\":[{\"type\":\"price\",\"content\":\"Design\",\"price\":500}]},{\"id\":\"2024\",\"rows\":[{\"type\":\"text\",\"content\":\"Note\"}]}]},\"extra\":\"kept\"}"
+				],
+				"isError": false
+			}
+		},
+		"get_proposal_details/no-pricetables": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":100,\"name\":\"Website\",\"status\":\"open\",\"price_total\":\"1000.00\",\"content\":{\"pricetables\":[]},\"extra\":\"kept\"}"
+				],
+				"isError": false
+			}
+		},
+		"get_proposal_directories": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposal-directories/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"edit\":[],\"open\":[{\"id\":1,\"name\":\"Q1\"}]}"
+				],
+				"isError": false
+			}
+		},
+		"get_proposal_templates": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/favorites/proposals",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"automations_set_id\":null,\"custom_fields\":[{\"label\":\"Project\",\"name\":\"project\",\"required\":false,\"type\":\"text\",\"extra\":\"kept\"}],\"design_template_id\":2,\"id\":5,\"name\":\"Standard\",\"text_template_id\":3}]"
+				],
+				"isError": false
+			}
+		},
+		"get_product_directories": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/products/directories/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":20,\"name\":\"Services\"},{\"id\":21,\"name\":\"New\"}]"
+				],
+				"isError": false
+			}
+		},
+		"get_products": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/products/20/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":30,\"name\":\"Hour\",\"descr_short\":null,\"price\":\"95.00\",\"vat_id\":1,\"vat_percentage\":\"21.00\",\"sku\":null,\"selectable\":false,\"recurring\":\"month\"}]"
+				],
+				"isError": false
+			}
+		},
+		"get_tags": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/settings/tags/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":7,\"name\":\"vip\"}]"
+				],
+				"isError": false
+			}
+		},
+		"get_text_templates": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/settings/text-templates",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":2,\"name\":\"Clean\",\"extra\":\"kept\"}]"
+				],
+				"isError": false
+			}
+		},
+		"get_vat_groups": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/settings/vat-groups/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":1,\"label\":\"High\",\"name\":\"high\",\"vat\":\"21.00\"}]"
+				],
+				"isError": false
+			}
+		},
+		"list_proposals": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/open/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":100,\"name\":\"Website\",\"account_user_id\":1,\"contact_id\":10,\"contact_name\":\"Acme BV\",\"date_created\":\"2026-02-01 09:00:00\",\"directory_id\":null,\"price_total\":\"1000.00\",\"proposal_nr\":\"2026-001\",\"status\":\"open\",\"version_id\":200,\"extra\":\"kept\"}]"
+				],
+				"isError": false
+			}
+		},
+		"list_proposals/directory": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/won/5/",
+					"query": {
+						"sort": "date_created",
+						"page": "2"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[]"
+				],
+				"isError": false
+			}
+		},
+		"search_contact_organisations": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/contacts/organisations/",
+					"query": {
+						"query": "Acme & Co/1"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":10,\"city\":null,\"name\":\"Acme BV\",\"date_created\":\"2026-01-01\",\"people\":[{\"id\":11,\"email\":\"bo@acme.test\",\"firstname\":\"Bo\",\"lastname\":\"Ek\",\"fullname\":\"Bo Ek\",\"extra\":\"kept\"}],\"type\":\"organisation\"}]"
+				],
+				"isError": false
+			}
+		},
+		"search_contact_people": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/contacts/people/",
+					"query": {
+						"query": "Bo"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":11,\"contact_id\":10,\"type\":\"person\",\"organisation\":\"Acme BV\",\"date_created\":\"2026-01-01\",\"firstname\":\"Bo\",\"lastname\":\"Ek\",\"fullname\":\"Bo Ek\",\"salutation\":\"\"}]"
+				],
+				"isError": false
+			}
+		},
+		"search_proposals": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/open/",
+					"query": {
+						"query": "web site"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":100,\"name\":\"Website\",\"account_user_id\":1,\"contact_id\":10,\"contact_name\":\"Acme BV\",\"date_created\":\"2026-02-01 09:00:00\",\"directory_id\":null,\"price_total\":\"1000.00\",\"proposal_nr\":\"2026-001\",\"status\":\"open\",\"version_id\":200,\"extra\":\"kept\"}]"
+				],
+				"isError": false
+			}
+		},
+		"create_contact": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/contacts/",
+					"query": {},
+					"body": {
+						"type": "organisation",
+						"name": "New BV",
+						"city": "Delft",
+						"tags": [
+							{
+								"id": 7,
+								"name": "vip"
+							}
+						],
+						"extra_key": "kept"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":13}"
+				],
+				"isError": false
+			}
+		},
+		"create_contact/string-tag": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'create_contact' parameter validation failed: tags.0: Expected object, received string. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"create_contact_person": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/contacts/10/people/",
+					"query": {},
+					"body": {
+						"name": "Cy Do",
+						"email": "cy@acme.test",
+						"custom_hobby": "knitting"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":12,\"firstname\":\"Cy\",\"lastname\":\"Do\"}"
+				],
+				"isError": false
+			}
+		},
+		"create_product": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/products/20/",
+					"query": {},
+					"body": {
+						"name": "Hour",
+						"price": 95,
+						"vat_id": 1,
+						"selectable": "false",
+						"recurring": "month"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"product_id\":31}"
+				],
+				"isError": false
+			}
+		},
+		"create_product/limit": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/products/20/",
+					"query": {},
+					"body": {
+						"name": "Hour",
+						"price": 95,
+						"vat_id": 1
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"The product was not created: the product limit of the account plan is reached."
+				],
+				"isError": true
+			}
+		},
+		"create_product_directory": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/products/directories/",
+					"query": {},
+					"body": {
+						"name": "New"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/products/directories/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"[{\"id\":20,\"name\":\"Services\"},{\"id\":21,\"name\":\"New\"}]"
+				],
+				"isError": false
+			}
+		},
+		"create_proposal": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/proposals/",
+					"query": {},
+					"body": {
+						"contact_id": 10,
+						"contact_people": [
+							11
+						],
+						"design_template_id": 2,
+						"name": "Website",
+						"proposal_template_id": 5,
+						"text_template_id": 3,
+						"custom_fields": [
+							{
+								"name": "project",
+								"value": "Site"
+							}
+						],
+						"tags": [
+							"new",
+							{
+								"id": 7,
+								"name": "vip"
+							}
+						]
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":101,\"version_id\":201}"
+				],
+				"isError": false
+			}
+		},
+		"copy_proposal": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/proposals/100/copy/",
+					"query": {},
+					"body": {
+						"name": "Copy",
+						"contact_id": 10,
+						"contact_people": [
+							11
+						]
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":102,\"version_id\":202}"
+				],
+				"isError": false
+			}
+		},
+		"send_proposal": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/proposals/100/send/",
+					"query": {},
+					"body": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"receivers\":[{\"email\":\"bo@acme.test\",\"fullname\":\"Bo Ek\",\"id\":11,\"proposal_link\":\"https://acme.offorte.test/p/1\"}]}"
+				],
+				"isError": false
+			}
+		},
+		"send_proposal/self": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/proposals/100/send/",
+					"query": {},
+					"body": {
+						"send_method": "self",
+						"send_message": "Hello",
+						"password_reset": true
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"receivers\":[]}"
+				],
+				"isError": false
+			}
+		},
+		"update_contact": {
+			"requests": [
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/contacts/10/",
+					"query": {},
+					"body": {
+						"city": "Utrecht",
+						"custom_hobby": "knitting"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/contacts/10/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":10,\"city\":\"Utrecht\",\"name\":\"Acme BV\",\"date_created\":\"2026-01-01\",\"people\":[{\"id\":11,\"email\":\"bo@acme.test\",\"firstname\":\"Bo\",\"lastname\":\"Ek\",\"fullname\":\"Bo Ek\",\"extra\":\"kept\"}],\"type\":\"organisation\",\"proposals\":[{\"id\":100,\"name\":\"Website\",\"account_user_id\":1,\"contact_id\":10,\"contact_name\":\"Acme BV\",\"date_created\":\"2026-02-01 09:00:00\",\"directory_id\":null,\"price_total\":\"1000.00\",\"proposal_nr\":\"2026-001\",\"status\":\"open\",\"version_id\":200,\"extra\":\"kept\"}],\"tags\":[{\"id\":7,\"name\":\"vip\"}],\"custom_hobby\":\"knitting\"}"
+				],
+				"isError": false
+			}
+		},
+		"update_contact_person": {
+			"requests": [
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/contacts/10/people/11/",
+					"query": {},
+					"body": {
+						"email": "bo@acme.test",
+						"tags": []
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/contacts/10/people/11/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":11,\"email\":\"bo@acme.test\",\"firstname\":\"Bo\",\"lastname\":\"Ek\",\"fullname\":\"Bo Ek\",\"extra\":\"kept\"}"
+				],
+				"isError": false
+			}
+		},
+		"update_product": {
+			"requests": [
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/product/30/",
+					"query": {},
+					"body": {
+						"name": "Hour",
+						"price": 100,
+						"vat_id": 1,
+						"sku": "",
+						"descr_short": "",
+						"selectable": "check",
+						"recurring": false
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"Product 30 is saved."
+				],
+				"isError": false
+			}
+		},
+		"update_product_directory": {
+			"requests": [
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/products/directories/20/",
+					"query": {},
+					"body": {
+						"name": "Renamed"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"Product directory 20 is renamed."
+				],
+				"isError": false
+			}
+		},
+		"update_proposal": {
+			"requests": [
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"body": {
+						"name": "New name",
+						"price_total": 900
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":100,\"name\":\"Website\",\"status\":\"open\",\"price_total\":\"1000.00\",\"content\":{\"pricetables\":[{\"id\":\"pt1\",\"rows\":[{\"type\":\"price\",\"content\":\"Design\",\"price\":500}]},{\"id\":\"2024\",\"rows\":[{\"type\":\"text\",\"content\":\"Note\"}]}]},\"extra\":\"kept\"}"
+				],
+				"isError": false
+			}
+		},
+		"update_proposal/no-fields": {
+			"requests": [],
+			"result": {
+				"text": [
+					"No field to change was given. Nothing was sent."
+				],
+				"isError": true
+			}
+		},
+		"update_proposal_pricetables": {
+			"requests": [
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"body": {
+						"content": {
+							"pricetables": [
+								{
+									"id": "pt1",
+									"rows": [
+										{
+											"content": "Design",
+											"discount_value": 10,
+											"price": 600,
+											"product_id": "",
+											"type": "price",
+											"unique_id": "2024",
+											"vat_percentage": -1
+										}
+									]
+								}
+							]
+						}
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"price_total\":\"1000.00\",\"pricetables\":[{\"id\":\"pt1\",\"rows\":[{\"type\":\"price\",\"content\":\"Design\",\"price\":500}]}]}"
+				],
+				"isError": false
+			}
+		},
+		"update_proposal_status": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"body": {
+						"status": "won"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":100,\"name\":\"Website\",\"status\":\"won\",\"price_total\":\"1000.00\",\"content\":{\"pricetables\":[{\"id\":\"pt1\",\"rows\":[{\"type\":\"price\",\"content\":\"Design\",\"price\":500}]},{\"id\":\"2024\",\"rows\":[{\"type\":\"text\",\"content\":\"Note\"}]}]},\"extra\":\"kept\"}"
+				],
+				"isError": false
+			}
+		},
+		"update_proposal_status/same": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"{\"id\":100,\"name\":\"Website\",\"status\":\"open\",\"price_total\":\"1000.00\",\"content\":{\"pricetables\":[{\"id\":\"pt1\",\"rows\":[{\"type\":\"price\",\"content\":\"Design\",\"price\":500}]},{\"id\":\"2024\",\"rows\":[{\"type\":\"text\",\"content\":\"Note\"}]}]},\"extra\":\"kept\"}"
+				],
+				"isError": false
+			}
+		},
+		"update_proposal_status/won": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"This proposal is won. A status change deletes its approval data and signing log for good, so this tool does not change it. Make this change in Offorte."
+				],
+				"isError": true
+			}
+		},
+		"delete_proposal": {
+			"requests": [
+				{
+					"method": "DELETE",
+					"path": "/api/v2/acme/proposals/100/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"Proposal 100 is in the trashcan. A user can restore it in Offorte under Settings > Trashcan."
+				],
+				"isError": false
+			}
+		},
+		"get_account_users/api-error": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/account/users",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"Request failed: Request failed with status code 404 | Errors: {\"account\":\"not found\"}"
+				],
+				"isError": true,
+				"structuredContent": {
+					"method": "GET",
+					"url": "http://mock/api/v2/acme/account/users",
+					"status": 404,
+					"statusText": "Not Found",
+					"data": {
+						"errors": {
+							"account": "not found"
+						}
+					},
+					"code": "ERR_BAD_REQUEST",
+					"errors": {
+						"account": "not found"
+					}
+				}
+			}
+		},
+		"get_products/api-error": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/products/20/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"Request failed: Request failed with status code 500"
+				],
+				"isError": true,
+				"structuredContent": {
+					"method": "GET",
+					"url": "http://mock/api/v2/acme/products/20/",
+					"status": 500,
+					"statusText": "Internal Server Error",
+					"data": {
+						"message": "failed"
+					},
+					"code": "ERR_BAD_RESPONSE"
+				}
+			}
+		},
+		"create_proposal/api-error": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/proposals/",
+					"query": {},
+					"body": {
+						"contact_id": 10,
+						"contact_people": [
+							11
+						],
+						"design_template_id": 2,
+						"name": "P",
+						"proposal_template_id": 5,
+						"text_template_id": 3
+					},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"Request failed: Request failed with status code 422 | Errors: {\"name\":[\"is required\"]}"
+				],
+				"isError": true,
+				"structuredContent": {
+					"method": "POST",
+					"url": "http://mock/api/v2/acme/proposals/",
+					"status": 422,
+					"statusText": "Unprocessable Entity",
+					"data": {
+						"errors": {
+							"name": [
+								"is required"
+							]
+						}
+					},
+					"code": "ERR_BAD_REQUEST",
+					"errors": {
+						"name": [
+							"is required"
+						]
+					}
+				}
+			}
+		},
+		"get_account_users/wrong-format": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/account/users",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"Error: The API response did not match the expected format.: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"object\",\n    \"path\": [],\n    \"message\": \"Expected array, received object\"\n  }\n]"
+				],
+				"isError": true
+			}
+		},
+		"get_proposal_details/wrong-format": {
+			"requests": [
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"Error: The API response did not match the expected format.: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"number\",\n    \"received\": \"string\",\n    \"path\": [\n      \"id\"\n    ],\n    \"message\": \"Expected number, received string\"\n  },\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"name\"\n    ],\n    \"message\": \"Required\"\n  },\n  {\n    \"expected\": \"'edit' | 'open' | 'won' | 'lost' | 'closed'\",\n    \"received\": \"undefined\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"status\"\n    ],\n    \"message\": \"Required\"\n  },\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"price_total\"\n    ],\n    \"message\": \"Required\"\n  },\n  {\n    \"code\": \"invalid_union\",\n    \"unionErrors\": [\n      {\n        \"issues\": [\n          {\n            \"code\": \"invalid_type\",\n            \"expected\": \"object\",\n            \"received\": \"undefined\",\n            \"path\": [\n              \"content\"\n            ],\n            \"message\": \"Required\"\n          }\n        ],\n        \"name\": \"ZodError\"\n      },\n      {\n        \"issues\": [\n          {\n            \"code\": \"invalid_type\",\n            \"expected\": \"array\",\n            \"received\": \"undefined\",\n            \"path\": [\n              \"content\"\n            ],\n            \"message\": \"Required\"\n          }\n        ],\n        \"name\": \"ZodError\"\n      }\n    ],\n    \"path\": [\n      \"content\"\n    ],\n    \"message\": \"Invalid input\"\n  }\n]"
+				],
+				"isError": true
+			}
+		},
+		"send_proposal/wrong-format": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/proposals/100/send/",
+					"query": {},
+					"body": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"Error: The API response did not match the expected format.: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"string\",\n    \"path\": [\n      \"receivers\"\n    ],\n    \"message\": \"Expected array, received string\"\n  }\n]"
+				],
+				"isError": true
+			}
+		},
+		"update_contact/read-back-error": {
+			"requests": [
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/contacts/10/",
+					"query": {},
+					"body": {
+						"city": "Delft"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/contacts/10/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"The contact change was saved. Do not repeat it. Reading it back failed: Request failed: Request failed with status code 500"
+				],
+				"isError": true
+			}
+		},
+		"update_proposal/read-back-format": {
+			"requests": [
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"body": {
+						"name": "X"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"The proposal change was saved. Do not repeat it. The read-back did not match the expected format: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"name\"\n    ],\n    \"message\": \"Required\"\n  },\n  {\n    \"expected\": \"'edit' | 'open' | 'won' | 'lost' | 'closed'\",\n    \"received\": \"undefined\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"status\"\n    ],\n    \"message\": \"Required\"\n  },\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"price_total\"\n    ],\n    \"message\": \"Required\"\n  },\n  {\n    \"code\": \"invalid_union\",\n    \"unionErrors\": [\n      {\n        \"issues\": [\n          {\n            \"code\": \"invalid_type\",\n            \"expected\": \"object\",\n            \"received\": \"undefined\",\n            \"path\": [\n              \"content\"\n            ],\n            \"message\": \"Required\"\n          }\n        ],\n        \"name\": \"ZodError\"\n      },\n      {\n        \"issues\": [\n          {\n            \"code\": \"invalid_type\",\n            \"expected\": \"array\",\n            \"received\": \"undefined\",\n            \"path\": [\n              \"content\"\n            ],\n            \"message\": \"Required\"\n          }\n        ],\n        \"name\": \"ZodError\"\n      }\n    ],\n    \"path\": [\n      \"content\"\n    ],\n    \"message\": \"Invalid input\"\n  }\n]"
+				],
+				"isError": true
+			}
+		},
+		"update_proposal_pricetables/read-back-error": {
+			"requests": [
+				{
+					"method": "PATCH",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"body": {
+						"content": {
+							"pricetables": [
+								{
+									"id": "pt1",
+									"rows": []
+								}
+							]
+						}
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/proposals/100/details/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"The price tables were saved, but reading them back failed: Request failed: Request failed with status code 503"
+				],
+				"isError": true
+			}
+		},
+		"create_product_directory/read-back-error": {
+			"requests": [
+				{
+					"method": "POST",
+					"path": "/api/v2/acme/products/directories/",
+					"query": {},
+					"body": {
+						"name": "New"
+					},
+					"authorization": "Bearer ofk_test_acme"
+				},
+				{
+					"method": "GET",
+					"path": "/api/v2/acme/products/directories/",
+					"query": {},
+					"authorization": "Bearer ofk_test_acme"
+				}
+			],
+			"result": {
+				"text": [
+					"The product directory was saved. Do not repeat it. Reading it back failed: Request failed: Request failed with status code 500"
+				],
+				"isError": true
+			}
+		},
+		"get_proposal_details/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'get_proposal_details' parameter validation failed: proposal_id: Expected number, received string. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"get_contact_details/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'get_contact_details' parameter validation failed: contact_id: Required. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"list_proposals/invalid-status": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'list_proposals' parameter validation failed: status: Invalid enum value. Expected 'edit' | 'open' | 'won' | 'lost' | 'closed', received 'deleted'. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"list_proposals/invalid-page": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'list_proposals' parameter validation failed: page: Number must be greater than or equal to 1. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"create_proposal/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'create_proposal' parameter validation failed: contact_id: Required, contact_people: Required, design_template_id: Required, proposal_template_id: Required, text_template_id: Required. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"create_contact/invalid-type": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'create_contact' parameter validation failed: type: Invalid enum value. Expected 'organisation' | 'person', received 'company'. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"create_product/invalid-selectable": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'create_product' parameter validation failed: selectable: Invalid input. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"update_product/missing-fields": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'update_product' parameter validation failed: price: Required, vat_id: Required, sku: Required, descr_short: Required, selectable: Invalid input, recurring: Invalid input. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"send_proposal/invalid-method": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'send_proposal' parameter validation failed: send_method: Invalid enum value. Expected 'offorte' | 'self', received 'email'. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"update_contact_person/invalid-custom-field": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'update_contact_person' parameter validation failed: custom_fields.hobby: Invalid. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"update_proposal_pricetables/invalid-table-id": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'update_proposal_pricetables' parameter validation failed: pricetables.0.id: String must contain at least 1 character(s). Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"update_proposal/invalid-tags": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'update_proposal' parameter validation failed: tags.0: Invalid input. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"search_contact_organisations/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'search_contact_organisations' parameter validation failed: search: Required. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"search_contact_people/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'search_contact_people' parameter validation failed: search: Expected string, received number. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"search_proposals/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'search_proposals' parameter validation failed: search: Required. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"get_products/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'get_products' parameter validation failed: directory_id: Expected number, received string. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"create_contact_person/invalid-custom-field": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'create_contact_person' parameter validation failed: custom_fields.hobby: Invalid. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"update_contact/invalid-custom-field": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'update_contact' parameter validation failed: custom_fields.hobby: Invalid. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"copy_proposal/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'copy_proposal' parameter validation failed: contact_id: Required. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"update_proposal_status/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'update_proposal_status' parameter validation failed: status: Invalid enum value. Expected 'edit' | 'open' | 'won' | 'lost' | 'closed', received 'deleted'. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"delete_proposal/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'delete_proposal' parameter validation failed: proposal_id: Expected number, received string. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"create_product_directory/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'create_product_directory' parameter validation failed: name: Required. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		},
+		"update_product_directory/invalid": {
+			"requests": [],
+			"result": {
+				"text": [
+					"Tool 'update_product_directory' parameter validation failed: name: Required. Please check the parameter types and values according to the tool's schema."
+				],
+				"isError": true
+			}
+		}
+	}
+}
